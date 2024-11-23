@@ -11,14 +11,14 @@
 <body>
 <div>
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-<!--        Icon dan title web di navbar -->
+        <!--        Icon dan title web di navbar -->
         <div class="d-flex align-items-center">
             <img src="image/logoJti.png" class="navbar-brand" width="50" height="50" alt="icon">
             <a class="navbar-brand mb-0 h1 ml-2 text-primary" href="#">SISTEM INFORMASI TATA TERTIB</a>
         </div>
-<!--       / Icon dan title web di navbar -->
+        <!--       / Icon dan title web di navbar -->
 
-<!--Navbar-->
+        <!--Navbar-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -26,7 +26,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
                     <div class="d-flex align-items-center">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="Home.php">Home</a>
                     </div>
 
                 </li>
@@ -43,53 +43,7 @@
         </div>
     </nav>
 </div>
-<div>
-    <img src="image/HomeImage.jpg" class="img-fluid brand-image" alt="Responsive image" width="3500" height="500">
-</div>
 <!--/ navbar -->
-
-<!--Card-->
-<div class="container mb-5"> <!-- Tambahkan mb-5 untuk jarak dengan Content 1 -->
-    <div class="section-title text-center my-4 text-primary ">
-        <h2>PELAPORAN PELANGGARAN</h2>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm p-3 mb-4">
-                <div class="card-body">
-                    <i class="fas fa-headset fa-3x mb-3"></i>
-                    <h5 class="card-title">
-                        <a href="#">Laporan Pelanggaran</a>
-                    </h5>
-                    <p class="card-text">Nullam senectus porttitor in eget. Eget rutrum leo interdum.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm p-3 mb-4">
-                <div class="card-body">
-                    <i class="fas fa-headset fa-3x mb-3"></i>
-                    <h5 class="card-title">
-                        <a href="#">Laporan PPKS</a>
-                    </h5>
-                    <p class="card-text">Cursus semper tellus volutpat aliquet lacus.</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm p-3 mb-4">
-                <div class="card-body">
-                    <i class="fas fa-tools fa-3x mb-3"></i>
-                    <h5 class="card-title">
-                        <a href="#">Cek data Laporan</a>
-                    </h5>
-                    <p class="card-text">Ultricies at ipsum nunc, tristique nam lectus.</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--/Card-->
 
 <!--Script -->
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

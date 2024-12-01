@@ -71,13 +71,13 @@
                     <a class="nav-link" href="#tentang">Tentang Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#launches">Launches</a>
+                    <a class="nav-link" href="#pelaporan">Pelaporan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#gallery">Gallery</a>
+                    <a class="nav-link" href="#gallery">Kontak Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Contact</a>
+                    <a class="nav-link" href="#contact">Profile</a>
                 </li>
             </ul>
         </div>
@@ -90,10 +90,13 @@
     </div>
 </div>
 <!-- Card Section -->
-<div class="container my-5">
+<div id="pelaporan" class="container my-5">
     <div class="section-title text-center my-4">
         <h2>PELAPORAN PELANGGARAN</h2>
     </div>
+    <br>
+    <br>
+    <br>
     <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card text-center shadow-sm p-3 mb-4">

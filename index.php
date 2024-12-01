@@ -40,7 +40,7 @@
 
         .card-title a {
             text-decoration: none;
-            color: #73b5cf;
+            color: #889CFE;
         }
 
         .card-title a:hover {
@@ -48,8 +48,8 @@
         }
 
         footer {
-            background-color: #d6d5d5;
-            color: #050505;
+            background-color: #000000;
+            color: #fafafa;
         }
     </style>
 
@@ -74,7 +74,7 @@
                     <a class="nav-link" href="#pelaporan">Pelaporan</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#gallery">Kontak Kami</a>
+                    <a class="nav-link" href="#contact">Kontak Kami</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#contact">Profile</a>
@@ -91,7 +91,7 @@
 </div>
 <!-- Card Section -->
 <div id="pelaporan" class="container my-5">
-    <div class="section-title text-center my-4">
+    <div class="section-title text-center my-4 text-primary">
         <h2>PELAPORAN PELANGGARAN</h2>
     </div>
     <br>
@@ -157,10 +157,52 @@
     </div>
 </div>
 <!-- /Tentang Kami -->
+<br>
+<br>
+<br>
+<!--Contact info -->
+<div id="contact" class="hero-section " style="height: 60vh; background: #889CFE no-repeat center center/cover;">
+    <div class="d-flex justify-content-left align-items-center h-100">
+        <div class="col-md-6">
+            <section class="contact-section">
+                <div class="container">
+                    <div class="text-left mb-4">
+                        <h3 class="text-white">Contact Info</h3>
+                    </div>
+                    <div class="row">
+                        <!-- Column 1: Service Info -->
+                        <div class="col-md-4 mb-4 text-white">
+                            <div class="contact-card p-3">
+                                <h5 class="contact-title">Layanan Bantuan</h5>
+                            </div>
+                        </div>
+                        <!-- Column 2: Email -->
+                        <div class="col-md-4 mb-4">
+                            <div class="contact-card p-3">
+                                <h5 class="contact-title">Email Address</h5>
+                                <p class="contact-info">help@info.com</p>
+                                <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
+                            </div>
+                        </div>
+                        <!-- Column 3: Phone -->
+                        <div class="col-md-4 mb-4">
+                            <div class="contact-card p-3">
+                                <h5 class="contact-title">Number</h5>
+                                <p class="contact-info">(808) 908-34258</p>
+                                <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+    </div>
+</div>
+<!-- /Contact info-->
 
 <!-- Footer -->
-<footer class="text-center py-3">
-    <p class="mb-0">© 2024 Kelompok 2 PBL. All rights reserved.</p>
+<footer class="text-center py-2">
+    <p class="mb-0">© 2024 kelompok 2 team . All rights reserved.</p>
 </footer>
 <!-- /Footer -->
 
@@ -178,5 +220,7 @@
         });
     });
 </script>
+<!-- /Scripts -->
+
 </body>
 </html>

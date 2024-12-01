@@ -69,7 +69,38 @@
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempor eros id lorem aliquam, sit amet gravida libero aliquam.</p>
     </div>
 </section>
-
+<section class="contact-section">
+    <div class="container">
+        <div class="text-center mb-4">
+            <h3 class="text-primary">Contact Info</h3>
+        </div>
+        <div class="row">
+            <!-- Column 1: Service Info -->
+            <div class="col-md-4 mb-4">
+                <div class="contact-card p-3">
+                    <h5 class="contact-title">Layanan Bantuan</h5>
+                    <h6 class="font-weight-bold">SisiTaTiB</h6>
+                </div>
+            </div>
+            <!-- Column 2: Email -->
+            <div class="col-md-4 mb-4">
+                <div class="contact-card p-3">
+                    <h5 class="contact-title">Email Address</h5>
+                    <p class="contact-info">help@info.com</p>
+                    <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
+                </div>
+            </div>
+            <!-- Column 3: Phone -->
+            <div class="col-md-4 mb-4">
+                <div class="contact-card p-3">
+                    <h5 class="contact-title">Number</h5>
+                    <p class="contact-info">(808) 908-34258</p>
+                    <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- JavaScript -->
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>

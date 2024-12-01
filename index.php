@@ -2,57 +2,99 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
     <title>SisiTatib</title>
     <style>
+/*   Scroll effect */
         html {
             scroll-behavior: smooth;
         }
+/*   / Scroll effect */
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: transparent;
+            transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background-color: #ffffff; /* Solid black */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-nav .nav-link {
+            color: #fff;
+            transition: color 0.3s ease;
+        }
+
+        .navbar.scrolled .nav-link {
+            color: #000000;
+        }
+
+        /* Additional Styles */
+        .section-title h2 {
+            font-weight: bold;
+        }
+
+        .card-title a {
+            text-decoration: none;
+            color: #73b5cf;
+        }
+
+        .card-title a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #d6d5d5;
+            color: #050505;
+        }
     </style>
+
 </head>
 <body>
-<div>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <!--        Icon dan title web di navbar -->
-        <div class="d-flex align-items-center">
-            <img src="view/HomepageImage/logoJti.png" class="navbar-brand" width="50" height="50" alt="icon">
-            <a class="navbar-brand mb-0 h1 ml-2 text-dark" href="#">SISTEM INFORMASI TATA TERTIB <span class="sr-only">(current)</span></a>
-        </div>
-        <!--       / Icon dan title web di navbar -->
-
-        <!--Navbar-->
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top">
+    <div class="container">
+        <a class="navbar-brand d-flex align-items-center" href="#">
+            <img src="view/HomepageImage/logoJti.png" width="50" height="50" alt="icon">
+            <span class="ml-2 text-dark" href="#home" >SISTEM INFORMASI TATA TERTIB </span>
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link text-muted" href="#tentang">Tentang</a>
+                    <a class="nav-link" href="#tentang">Tentang Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-muted" href="#">Kontak</a>
+                    <a class="nav-link" href="#launches">Launches</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link text-muted" href="#">Profile</a>
+                    <a class="nav-link" href="#gallery">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
                 </li>
             </ul>
         </div>
-    </nav>
+    </div>
+</nav>
+<!-- /Navbar -->
+<div id="home" class="hero-section" style="height: 100vh; background: url('view/HomepageImage/homepage.png') no-repeat center center/cover;">
+    <div class="d-flex justify-content-center align-items-center h-100">
+        <h1 class="text-white font-weight-bold">Sistem Informasi TATIB</h1>
+    </div>
 </div>
-<div>
-    <img src="view/HomepageImage/HomeImage.jpg" class="img-fluid brand-image" alt="Responsive image" width="3500" height="500">
-</div>
-<!--/ navbar -->
-
-<!--Card-->
+<!-- Card Section -->
 <div class="container my-5">
-    <div class="section-title text-center my-4 text-dark ">
+    <div class="section-title text-center my-4">
         <h2>PELAPORAN PELANGGARAN</h2>
     </div>
-    <div class="row justify-content-center pr-4"> <!-- Tambahkan gy-4 untuk jarak antar card -->
+    <div class="row justify-content-center">
         <div class="col-md-4">
             <div class="card text-center shadow-sm p-3 mb-4">
                 <div class="card-body">
@@ -60,24 +102,24 @@
                     <h5 class="card-title">
                         <a href="#">Laporkan Pelanggaran</a>
                     </h5>
-                    <p class="card-text">Anda akan memasuki laman khusus dalam hal pelanggaran umum. </p>
+                    <p class="card-text">Anda akan memasuki laman khusus dalam hal pelanggaran umum.</p>
                 </div>
             </div>
         </div>
         <div class="col-md-4">
             <div class="card text-center shadow-sm p-3 mb-4">
                 <div class="card-body">
-                    <i class="fas fa-headset fa-3x mb-3"></i>
+                    <i class="fas fa-exclamation-circle fa-3x mb-3"></i>
                     <h5 class="card-title">
-                        <a href="#">Laporkan pelanggaran PPKS</a>
+                        <a href="#">Laporkan Pelanggaran PPKS</a>
                     </h5>
-                    <p class="card-text">Anda akan masuk ke laman pelanggaran khusus hal ppks</p>
+                    <p class="card-text">Anda akan masuk ke laman pelanggaran khusus hal PPKS.</p>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<!--/Card-->
+<!-- /Card Section -->
 <br>
 <br>
 <br>
@@ -90,42 +132,48 @@
 </div>
 <!-- /Tumbal buar scroll ke tentang-->
 
-<!-- Tentang kami -->
+<!-- Tentang Kami -->
 <div class="container my-5">
     <div class="row">
-        <!-- Section 1: Who We Are -->
-        <div class="col-md-6 text-center text-md-left text-left pr-5">
+        <div class="col-md-6">
             <h6 class="text-primary">Perkenalan</h6>
-            <h3 class="font-weight-bold">Apasih itu SisiTaTiB ? </h3>
-            <p class="text-muted text-justify">
-                <b>SisiTaTiB</b> Merupakan Website realtime dalam menunjang penegakkan tata tertib di JTI dengan berdasar pada konsep realtime prosessing
-                dimana ini akan memberikan informasi upTo date dalam pelaporan,pelaksanaan sanksi serta hal-hal lain yang berkaitan dengan sistem tata tertib di jti
+            <h3 class="font-weight-bold">Apasih itu SisiTaTiB?</h3>
+            <p class="text-muted">
+                <b>SisiTaTiB</b> merupakan website realtime dalam menunjang penegakan tata tertib di JTI dengan konsep *real-time processing*. Website ini memberikan informasi terkini dalam pelaporan, pelaksanaan sanksi, serta hal-hal lain yang berkaitan dengan tata tertib di JTI.
             </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="Building" class="img-fluid rounded shadow">
+            <img src="view/HomepageImage/tentangImage.png" alt="About Image" class="img-fluid rounded shadow">
         </div>
-
-        <!-- Section 2: Why Us -->
-        <div class="col-md-6 text-center text-md-left pr-5">
+        <div class="col-md-6">
             <h6 class="text-primary">Alasan</h6>
-            <h3 class="font-weight-bold">Mengapa harus di SisiTaTiB ? </h3>
-            <p class="text-muted text-justify">
-                SisiTaTiB merupakan Website <b>prototype</b> dalam rangka untuk project PBL dengan maksud Website ini membantu dalam urusan
-                administrasi pelanggaran baik itu dalam golongan pelanggaran umum ataupun dalam pelanggaran kekerasan.
-                    Menggunakan tampilan yang baik serta fitur yang pas untuk menunjang berbagai aspek dalam penegakkan tata tertib di <b>JTI</b>
+            <h3 class="font-weight-bold">Mengapa harus di SisiTaTiB?</h3>
+            <p class="text-muted">
+                SisiTaTiB merupakan prototipe website yang membantu dalam urusan administrasi pelanggaran, baik pelanggaran umum maupun kekerasan. Dengan tampilan modern dan fitur-fitur yang relevan, website ini dirancang untuk mendukung berbagai aspek penegakan tata tertib di JTI.
             </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="Modern Building" class="img-fluid rounded shadow">
+            <img src="view/HomepageImage/tentangImage.png" alt="Why Us Image" class="img-fluid rounded shadow">
         </div>
     </div>
 </div>
+<!-- /Tentang Kami -->
 
-<footer class="bg-dark text-light text-center py-3">
-    <p class="mb-0">© 2024 Kelompok 2 PBL . All rights reserved.</p>
+<!-- Footer -->
+<footer class="text-center py-3">
+    <p class="mb-0">© 2024 Kelompok 2 PBL. All rights reserved.</p>
 </footer>
-<!-- /Tentang kami -->
-<!--Script -->
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<!-- /Footer -->
 
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+                $('.navbar').addClass('scrolled');
+            } else {
+                $('.navbar').removeClass('scrolled');
+            }
+        });
+    });
+</script>
 </body>
 </html>

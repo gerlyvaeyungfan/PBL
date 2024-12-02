@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <title>SisiTatib</title>
+    <title>Sistem Informasi Tata Tertib JTI Polinema</title>
     <style>
-/*   Scroll effect */
+        /*   Scroll effect */
         html {
             scroll-behavior: smooth;
         }
-/*   / Scroll effect */
+        /*   / Scroll effect */
 
         /* Navbar Styles */
         .navbar {
@@ -196,31 +196,31 @@
                 </div>
             </section>
 
+        </div>
     </div>
-</div>
-<!-- /Contact info-->
+    <!-- /Contact info-->
 
-<!-- Footer -->
-<footer class="text-center py-2">
-    <p class="mb-0">© 2024 kelompok 2 team . All rights reserved.</p>
-</footer>
-<!-- /Footer -->
+    <!-- Footer -->
+    <footer class="text-center py-2">
+        <p class="mb-0">© 2024 kelompok 2 team . All rights reserved.</p>
+    </footer>
+    <!-- /Footer -->
 
-<!-- Scripts -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-    $(document).ready(function () {
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 50) {
-                $('.navbar').addClass('scrolled');
-            } else {
-                $('.navbar').removeClass('scrolled');
-            }
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('.navbar').addClass('scrolled');
+                } else {
+                    $('.navbar').removeClass('scrolled');
+                }
+            });
         });
-    });
-</script>
-<!-- /Scripts -->
+    </script>
+    <!-- /Scripts -->
 
 </body>
 </html>

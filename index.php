@@ -59,7 +59,7 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="view/HomepageImage/logoJti.png" width="50" height="50" alt="icon">
+            <img src="view/img/jti.png" width="50" height="50" alt="icon">
             <span class="ml-2 text-dark" href="#home" >SISTEM INFORMASI TATA TERTIB </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">

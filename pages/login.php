@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="image-container">
-            <img src="../img/Gambarbg.jpeg">
+            <img src="../view/img/Gambarbg.jpeg">
         </div>
         <div class="login-container">
             <h1>LOGIN PAGE</h1>

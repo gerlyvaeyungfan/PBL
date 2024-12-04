@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -59,7 +60,7 @@
 <nav class="navbar navbar-expand-lg fixed-top">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="view/img/jti.png" width="50" height="50" alt="icon">
+            <img src="../view/img/jti.png" width="50" height="50" alt="icon">
             <span class="ml-2 text-dark" href="#home" >SISTEM INFORMASI TATA TERTIB </span>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -77,14 +78,17 @@
                     <a class="nav-link" href="#contact">Kontak Kami</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Profile</a>
+                    <a class="nav-link" href="#profile">Profile</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="login.php">Login</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
 <!-- /Navbar -->
-<div id="home" class="hero-section" style="height: 100vh; background: url('view/HomepageImage/homepage.png') no-repeat center center/cover;">
+<div id="home" class="hero-section" style="height: 100vh; background: url('../view/HomepageImage/homepage.png') no-repeat center center/cover;">
     <div class="d-flex justify-content-center align-items-center h-100">
         <h1 class="text-white font-weight-bold">Sistem Informasi TATIB</h1>
     </div>
@@ -103,7 +107,7 @@
                 <div class="card-body">
                     <i class="fas fa-headset fa-3x mb-3"></i>
                     <h5 class="card-title">
-                        <a href="#">Laporkan Pelanggaran</a>
+                        <a href="#">Data Laporan Pelanggaran</a>
                     </h5>
                     <p class="card-text">Anda akan memasuki laman khusus dalam hal pelanggaran umum.</p>
                 </div>
@@ -114,7 +118,7 @@
                 <div class="card-body">
                     <i class="fas fa-exclamation-circle fa-3x mb-3"></i>
                     <h5 class="card-title">
-                        <a href="#">Laporkan Pelanggaran PPKS</a>
+                        <a href="#">Data Laporan Pelanggaran PPKS</a>
                     </h5>
                     <p class="card-text">Anda akan masuk ke laman pelanggaran khusus hal PPKS.</p>
                 </div>
@@ -144,7 +148,7 @@
             <p class="text-muted">
                 <b>SisiTaTiB</b> merupakan website realtime dalam menunjang penegakan tata tertib di JTI dengan konsep *real-time processing*. Website ini memberikan informasi terkini dalam pelaporan, pelaksanaan sanksi, serta hal-hal lain yang berkaitan dengan tata tertib di JTI.
             </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="About Image" class="img-fluid rounded shadow">
+            <img src="../view/HomepageImage/tentangImage.png" alt="About Image" class="img-fluid rounded shadow">
         </div>
         <div class="col-md-6">
             <h6 class="text-primary">Alasan</h6>
@@ -152,7 +156,7 @@
             <p class="text-muted">
                 SisiTaTiB merupakan prototipe website yang membantu dalam urusan administrasi pelanggaran, baik pelanggaran umum maupun kekerasan. Dengan tampilan modern dan fitur-fitur yang relevan, website ini dirancang untuk mendukung berbagai aspek penegakan tata tertib di JTI.
             </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="Why Us Image" class="img-fluid rounded shadow">
+            <img src="../view/HomepageImage/tentangImage.png" alt="Why Us Image" class="img-fluid rounded shadow">
         </div>
     </div>
 </div>

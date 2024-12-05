@@ -1,34 +1,61 @@
 <?php
-// new connection
-$use_driver = 'sqlsrv'; // mysql atau sqlsrv
-$host = 'DESKTOP-53O8L0G';
-$username = ''; //'sa';
-$password = '';
-$database = 'tata_tertib';
-$db;
+// Class Connection
+class Connection {
+    private $use_driver = 'sqlsrv'; // Menentukan driver yang digunakan (sqlsrv)
+    private $host = 'DESKTOP-53O8L0G'; // Nama server
+    private $username = ''; // Username untuk koneksi database
+    private $password = ''; // Password untuk koneksi database
+    private $database = 'tata_tertib'; // Nama database yang akan digunakan
+    private $conn; // Menyimpan resource koneksi
 
-if ($use_driver == 'mysql') {
-    try {
-        $db = new mysqli('localhost', $username, $password, $database);
-        if ($db->connect_error) {
-            die('Connection DB failed: ' . $db->connect_error);
+    // Method untuk menghubungkan ke database
+    public function connect() {
+        // Mengecek apakah driver yang digunakan adalah sqlsrv
+        if ($this->use_driver == 'sqlsrv') {
+            $connectionOptions = [
+                'Database' => $this->database, // Nama database
+                'Uid' => $this->username, // Username
+                'PWD' => $this->password, // Password
+            ];
+            // Melakukan koneksi
+            $this->conn = sqlsrv_connect($this->host, $connectionOptions);
+            
+            // Mengecek apakah koneksi berhasil
+            if (!$this->conn) {
+                die('Koneksi gagal: ' . print_r(sqlsrv_errors(), true));
+            }
+        } else {
+            die('Driver tidak didukung. Gunakan sqlsrv.');
         }
-    } catch (Exception $e) {
-        die($e->getMessage());
+        
+        // Mengembalikan resource koneksi yang berhasil
+        return $this->conn;
     }
-} else if ($use_driver == 'sqlsrv') {
-    $credential = [
-        'Database' => $database,
-        'UID' => $username,
-        'PWD' => $password
-    ];
-    try {
-        $db = sqlsrv_connect($host, $credential);
-        if (!$db) {
-            $msg = sqlsrv_errors();
-            die($msg[0]['message']);
+
+    // Method untuk menutup koneksi
+    public function close() {
+        if ($this->conn) {
+            sqlsrv_close($this->conn); // Menutup koneksi jika ada
         }
-    } catch (Exception $e) {
-        die($e->getMessage());
+    }
+
+    // Optional: Method untuk mengatur konfigurasi koneksi
+    public function setConfig($use_driver, $host, $username, $password, $database) {
+        $this->use_driver = $use_driver;
+        $this->host = $host;
+        $this->username = $username;
+        $this->password = $password;
+        $this->database = $database;
+    }
+
+    // Method untuk mendapatkan resource koneksi (misalnya digunakan untuk query)
+    public function getConnection() {
+        return $this->conn;
     }
 }
+
+// // Penggunaan
+// $connection = new Connection();
+// $conn = $connection->connect();
+
+?>

@@ -1,8 +1,19 @@
 <?php
 include('controller/lib/Session.php');
 $session = new Session();
-if($session->get('is_login') === true){
-    header('Location: index.php');
+
+// Cek apakah pengguna sudah login
+if ($session->get('is_login') === true) {
+    $role = $session->get('role');
+    // Arahkan berdasarkan role
+    if ($role === 'admin') {
+        header('Location: pages/admin_dashboard.php'); // Arahkan ke halaman dashboard admin
+    } else if ($role === 'dosen') {
+        header('Location: pages/dosen_dashboard.php'); // Arahkan ke halaman dashboard user
+    } else if ($role === 'mahasiswa') {
+        header('Location: pages/mahasiswa_dashboard.php'); // Arahkan ke halaman dashboard admin
+    }
+    exit;
 }
 ?>
 
@@ -25,15 +36,15 @@ if($session->get('is_login') === true){
             <h1>LOGIN PAGE</h1>
             <?php
                 $status = $session->getFlash('status');
-                if($status === false){
+                if ($status === false) {
                     $message = $session->getFlash('message');
-                    echo '<div class="alert alert-warning">'. $message .
-                        '<button type="button" class="close" data-dismiss="alert" arialabel="Close"><span aria-hidden="true">&times;</span></div>';
+                    echo '<div class="alert alert-warning">' . $message . 
+                         '<button type="button" class="close" data-dismiss="alert" arialabel="Close"><span aria-hidden="true">&times;</span></button></div>';
                 }
             ?>
             <form action="controller/action/auth.php?act=login" method="post" id="form-login">
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" name="username" placeholder="Username" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-user"></span>
@@ -41,8 +52,7 @@ if($session->get('is_login') === true){
                     </div>
                 </div>
                 <div class="input-group mb-3">
-                    <input type="password" class="form-control" name="password"
-                           placeholder="Password">
+                    <input type="password" class="form-control" name="password" placeholder="Password" required>
                     <div class="input-group-append">
                         <div class="input-group-text">
                             <span class="fas fa-lock"></span>

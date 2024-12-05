@@ -3,10 +3,17 @@ session_start();
 
 // Cek apakah pengguna sudah login dan memiliki role 'mahasiswa'
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'mahasiswa') {
-    header('Location: login.php'); // Arahkan ke halaman login jika bukan mahasiswa
+    header('Location: ../login.php'); // Arahkan ke halaman login jika bukan mahasiswa
+    exit;
+}
+// Menambahkan fitur logout
+if (isset($_GET['logout'])) {
+    session_destroy();  // Hapus sesi
+    header('Location: ../login.php'); // Arahkan ke halaman login setelah logout
     exit;
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -52,6 +59,7 @@ if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'mahasiswa') {
                 <li>Dashboard</li>
                 <li>Riwayat Pelanggaran</li>
                 <li>Ganti Password</li>
+                <li><a href="?logout=true">Logout</a></li> <!-- Menambahkan link logout -->
             </ul>
         </div>
 

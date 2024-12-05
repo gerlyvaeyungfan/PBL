@@ -9,6 +9,35 @@ class UserModel extends Model{
         $this->db = $db;
         $this->driver = $use_driver;
     }
+
+    public function login($username, $password){
+        if($this->driver == 'mysql'){
+            // query untuk mengambil data berdasarkan username
+            $query = $this->db->prepare("select * from {$this->table} where username = ?");
+            $query->bind_param('s', $username);
+            $query->execute();
+            $result = $query->get_result()->fetch_assoc();
+            
+            // cek apakah user ditemukan dan password cocok
+            if ($result && password_verify($password, $result['password'])) {
+                return $result; // login sukses, mengembalikan data user
+            } else {
+                return false; // login gagal
+            }
+        } else {
+            // query untuk mengambil data berdasarkan username
+            $query = sqlsrv_query($this->db, "select * from {$this->table} where username = ?", [$username]);
+            $result = sqlsrv_fetch_array($query, SQLSRV_FETCH_ASSOC);
+            
+            // cek apakah user ditemukan dan password cocok
+            if ($result && password_verify($password, $result['password'])) {
+                return $result; // login sukses, mengembalikan data user
+            } else {
+                return false; // login gagal
+            }
+        }
+    }
+    
     public function insertData($data){
         if($this->driver == 'mysql'){
 // prepare statement untuk query insert

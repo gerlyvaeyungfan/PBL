@@ -1,6 +1,6 @@
 <?php  
 include('../lib/Session.php'); 
-include('../lib/Connection.php');  // Pastikan path ini benar
+include('../lib/Connection.php');
 
 $session = new Session(); 
 
@@ -39,13 +39,13 @@ if ($act == 'login') {
                 // Redirect ke dashboard yang sesuai berdasarkan role pengguna
                 switch ($data['role']) {
                     case 'admin':
-                        header('Location: ../../pages/admin_dashboard.php', false);
+                        header('Location: ../../pages/admin/admin_dashboard.php?page=dashboard', false);
                         break;
                     case 'dosen':
-                        header('Location: ../../pages/dosen_dashboard.php', false);
+                        header('Location: ../../pages/dosen/dosen_dashboard.php', false);
                         break;
                     case 'mahasiswa':
-                        header('Location: ../../pages/mahasiswa_dashboard.php', false);
+                        header('Location: ../../pages/mahasiswa/mahasiswa_dashboard.php', false);
                         break;
                     default:
                         // Redirect default jika role tidak dikenali

@@ -5,7 +5,7 @@ class UserModel extends Model{
     protected $table = 'akun';
     protected $driver;
     public function __construct(){
-        include('../lib/Connection.php');
+        include('../controller/lib/Connection.php');
         $this->db = $db;
         $this->driver = $use_driver;
     }

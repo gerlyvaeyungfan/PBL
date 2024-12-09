@@ -1,0 +1,172 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh;
+    background-color: #F0F0F0;
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    color: #889CFE;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+}
+
+.navbar img {
+    width: 36px;
+    height: 32px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.navbar p {
+    display: flex;
+    margin-left: 15px;
+}
+
+.sidebar {
+    background-color: #F4F2EC;
+    color: #696161;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+    margin-top: 60px; /* Adjusted for fixed navbar */
+}
+
+.user-info {
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 20px;
+    display: flex;
+}
+
+.user-info img {
+    display: flex;
+    width: 90px;
+    height: 120px;
+    border-radius: 50%;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+.user-info table {
+    text-align: right;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.menu {
+    list-style: none;
+    padding: 0;
+}
+
+.menu li {
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    background-color: #889CFE;
+    border-top: 1px solid #889CFE;
+    border-bottom: 1px solid #889CFE;
+    padding-bottom: 3px;
+    margin-bottom: 8px;
+    color: #353333;
+    text-align: left;
+}
+
+.menu li:hover {
+    background-color: #C7D0C4;
+    border-top: 1px solid #C7D0C4;
+    border-bottom: 1px solid #C7D0C4;
+}
+
+.menu p {
+    color: #353333;
+    margin-left: 10px;
+}
+
+.main-content {
+    margin-top: 60px; /* Space for navbar */
+    flex-grow: 1;
+    padding: 20px;
+    background-image: url("ProfileDosen/gedung.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh;
+}
+
+.header1 {
+    background-color: #889CFE;
+    color: #353333;
+    padding: 20px;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.content {
+    padding: 20px;
+    background-color: #D9D9D9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    /* border-radius: 10px; */
+    width: 1020px;
+}
+
+.form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form select, .form button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #819cff;
+    border-radius: 5px;
+}
+
+.form button {
+    background-color: #819cff;
+    color: black;
+    cursor: pointer;
+    border: none;
+}
+
+.out {
+    margin-bottom: 20px;
+    background-color: #819cff;
+    color: black;
+    padding: 10px;
+    cursor: pointer;
+    width: 80px;
+    align-self: center;
+    border: none;
+    margin-top: 50px;
+    margin-left: 10px;
+
+}
+.out:hover{
+    background-color: #C7D0C4;
+    border-top: 1px solid #C7D0C4;
+    border-bottom: 1px solid #C7D0C4;
+}
+.form button:hover{
+    background-color: #C7D0C4;
+    border-top: 1px solid #C7D0C4;
+    border-bottom: 1px solid #C7D0C4;
+}

@@ -10,11 +10,11 @@ $sql = "
 SELECT 
     pelanggaran.id,
     pelanggaran.deskripsi AS deskripsi_pelanggaran,
-    pelanggaran.tingkat_id,
+    pelanggaran.tingkat_sanksi,
     tingkat.deskripsi AS deskripsi_tingkat
 FROM pelanggaran
 LEFT JOIN tingkat
-ON pelanggaran.tingkat_id = tingkat.tingkat;
+ON pelanggaran.tingkat_sanksi = tingkat.tingkat;
 ";
 //Test
 $stmt = sqlsrv_query($conn, $sql);
@@ -153,7 +153,7 @@ if ($stmt === false) {
                     <tr>
                         <td><?= htmlspecialchars($row['id']) ?></td>
                         <td><?= htmlspecialchars($row['deskripsi_pelanggaran']) ?></td>
-                        <td><?= htmlspecialchars($row['tingkat_id']) ?></td>
+                        <td><?= htmlspecialchars($row['tingkat_sanksi']) ?></td>
                         <td><?= htmlspecialchars($row['deskripsi_tingkat'] ?? 'Tidak ada sanksi') ?></td>
                     </tr>
                 <?php endwhile; ?>

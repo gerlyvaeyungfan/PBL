@@ -1,4 +1,30 @@
 
+<?php
+require_once 'controller/lib/Connection.php';
+
+$connection = new Connection();
+$conn = $connection->connect();
+
+// Query untuk mengambil data dari tabel pelanggaran dengan JOIN ke tabel sanksi
+$sql = "
+SELECT 
+    pelanggaran.id,
+    pelanggaran.deskripsi AS pelanggaran_deskripsi,
+    pelanggaran.tingkat_pelanggaran,
+    sanksi.deskripsi AS sanksi_deskripsi
+FROM pelanggaran
+LEFT JOIN sanksi
+ON pelanggaran.tingkat_pelanggaran = sanksi.tingkat;
+";
+//Test
+$stmt = sqlsrv_query($conn, $sql);
+if ($stmt === false) {
+    die(print_r(sqlsrv_errors(), true));
+}
+//elseif (!$stmt== true) {
+//    die(print_r(sqlsrv_errors(), true));
+//}
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -69,13 +95,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#tentang">Tentang Kami</a>
+                    <a class="nav-link" href="#informasi">Informasi</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#pelaporan">Pelaporan</a>
+                    <a class="nav-link" href="#about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#contact">Kontak Kami</a>
+                    <a class="nav-link" href="#profile">Profile</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="login.php">Login</a>
@@ -87,125 +113,105 @@
 <!-- /Navbar -->
 <div id="home" class="hero-section" style="height: 100vh; background: url('view/HomepageImage/homepage.png') no-repeat center center/cover;">
     <div class="d-flex justify-content-center align-items-center h-100">
-        <h1 class="text-white font-weight-bold">Sistem Informasi TATIB</h1>
+        <h1 class="text-white font-weight-bold">SISTEM INFORMASI TATA TERTIB</h1>
     </div>
 </div>
-<!-- Card Section -->
-<div id="pelaporan" class="container my-5">
-    <div class="section-title text-center my-4 text-primary">
-        <h2>PELAPORAN PELANGGARAN</h2>
-    </div>
-    <br>
-    <br>
-    <br>
+<br>
+<br>
+<br>
+<br>
+
+<!-- Tabel Informasi Tata Tertib -->
+<div id="informasi" class="container mt-5">
+    <h1 class="text-center mb-4">INFORMASI LIST  TATA TERTIB JTI </h1>
+
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-8">
             <div class="card text-center shadow-sm p-3 mb-4">
                 <div class="card-body">
                     <i class="fas fa-headset fa-3x mb-3"></i>
-                    <h5 class="card-title">
-                        <a href="#">Data Laporan Pelanggaran</a>
-                    </h5>
-                    <p class="card-text">Anda akan memasuki laman khusus dalam hal pelanggaran umum.</p>
+                    <p class="card-text"> <b class="text-primary">INFORMASI</b> <br>Anda memasuki website sistem informasi tata tertib JTI Polinema dimana website ini
+                        memuat informasi mengenai laporan pelanggaran , informasi list tata tertib , sanksi dan tingkat serta informasi lainnya yang berkaitan dengan penunjang
+                        penegakkan ketertiban di JTI Polinema <b>Catatan:</b> Untuk <b>tingkatan pelanggaran dimana semakin tinggi</b> tingkat pelanggaran maka sanksi yang dijatuhkan akan lebih ringan dibanding
+                        dengan <b>tingkat pelanggaran  yang lebih rendah</b> maka sanksi yang di jatuhkan akan semakin berat</p>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card text-center shadow-sm p-3 mb-4">
-                <div class="card-body">
-                    <i class="fas fa-exclamation-circle fa-3x mb-3"></i>
-                    <h5 class="card-title">
-                        <a href="#">Data Laporan Pelanggaran PPKS</a>
-                    </h5>
-                    <p class="card-text">Anda akan masuk ke laman pelanggaran khusus hal PPKS.</p>
+
+        <table class="table table-bordered table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Deskripsi Pelanggaran</th>
+                <th>Tingkat Pelanggaran</th>
+                <th>Deskripsi Sanksi</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if ($stmt !== false && sqlsrv_has_rows($stmt)): ?>
+                <?php while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($row['id']) ?></td>
+                        <td><?= htmlspecialchars($row['pelanggaran_deskripsi']) ?></td>
+                        <td><?= htmlspecialchars($row['tingkat_pelanggaran']) ?></td>
+                        <td><?= htmlspecialchars($row['sanksi_deskripsi'] ?? 'Tidak ada sanksi') ?></td>
+                    </tr>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="4" class="text-center">Tidak ada data.</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+    <!-- /Table informasi tatib -->
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- Tentang Kami -->
+    <div id="about" class="container my-5">
+        <h1 class="text-center mb-4">Konsep Website</h1>
+        <div class="row justify-content-center">
+            <!-- Card 1 -->
+            <div class="col-md-6 mb-3 d-flex justify-content-center">
+                <div class="card shadow-sm" style="width: 100%; max-width: 500px;">
+                    <div class="card-body text-center">
+                        <h6 class="text-primary">Flowchart</h6>
+                        <h3 class="font-weight-bold">Sistem Tatib</h3>
+                        <p class="text-muted">
+                            <b>SisiTaTiB</b> merupakan website realtime dalam menunjang penegakan tata tertib di JTI dengan konsep *real-time processing*. Website ini memberikan informasi terkini dalam pelaporan, pelaksanaan sanksi, serta hal-hal lain yang berkaitan dengan tata tertib di JTI.
+                        </p>
+                        <a target="_blank" href="view/HomepageImage/tentangImage.png" class="d-block">
+                            <img src="view/HomepageImage/tentangImage.png" alt="Flowchart Image" class="img-fluid rounded shadow" style="width:150px;">
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-</div>
-<!-- /Card Section -->
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<!--Tumbal buar scroll ke tentang-->
-<div id="tentang"  class="text-brand" style="visibility: hidden">
-    <h5>p</h5>
-</div>
-<!-- /Tumbal buar scroll ke tentang-->
+            <!-- /Card 1 -->
 
-<!-- Tentang Kami -->
-<div class="container my-5">
-    <div class="row">
-        <div class="col-md-6">
-            <h6 class="text-primary">Perkenalan</h6>
-            <h3 class="font-weight-bold">Apasih itu SisiTaTiB?</h3>
-            <p class="text-muted">
-                <b>SisiTaTiB</b> merupakan website realtime dalam menunjang penegakan tata tertib di JTI dengan konsep *real-time processing*. Website ini memberikan informasi terkini dalam pelaporan, pelaksanaan sanksi, serta hal-hal lain yang berkaitan dengan tata tertib di JTI.
-            </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="About Image" class="img-fluid rounded shadow">
-        </div>
-        <div class="col-md-6">
-            <h6 class="text-primary">Alasan</h6>
-            <h3 class="font-weight-bold">Mengapa harus di SisiTaTiB?</h3>
-            <p class="text-muted">
-                SisiTaTiB merupakan prototipe website yang membantu dalam urusan administrasi pelanggaran, baik pelanggaran umum maupun kekerasan. Dengan tampilan modern dan fitur-fitur yang relevan, website ini dirancang untuk mendukung berbagai aspek penegakan tata tertib di JTI.
-            </p>
-            <img src="view/HomepageImage/tentangImage.png" alt="Why Us Image" class="img-fluid rounded shadow">
-        </div>
-    </div>
-</div>
-<!-- /Tentang Kami -->
-<br>
-<br>
-<br>
-<!--Contact info -->
-<div id="contact" class="hero-section " style="height: 60vh; background: #889CFE no-repeat center center/cover;">
-    <div class="d-flex justify-content-left align-items-center h-100">
-        <div class="col-md-6">
-            <section class="contact-section">
-                <div class="container">
-                    <div class="text-left mb-4">
-                        <h3 class="text-white">Contact Info</h3>
-                    </div>
-                    <div class="row">
-                        <!-- Column 1: Service Info -->
-                        <div class="col-md-4 mb-4 text-white">
-                            <div class="contact-card p-3">
-                                <h5 class="contact-title">Layanan Bantuan</h5>
-                            </div>
-                        </div>
-                        <!-- Column 2: Email -->
-                        <div class="col-md-4 mb-4">
-                            <div class="contact-card p-3">
-                                <h5 class="contact-title">Email Address</h5>
-                                <p class="contact-info">help@info.com</p>
-                                <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
-                            </div>
-                        </div>
-                        <!-- Column 3: Phone -->
-                        <div class="col-md-4 mb-4">
-                            <div class="contact-card p-3">
-                                <h5 class="contact-title">Number</h5>
-                                <p class="contact-info">(808) 908-34258</p>
-                                <p class="contact-info">Assistance hours: <br> Monday - Friday: 8 am to 8 pm EST</p>
-                            </div>
-                        </div>
+            <!-- Card 2 -->
+            <div class="col-md-6 mb-3 d-flex justify-content-center">
+                <div class="card shadow-sm" style="width: 100%; max-width: 500px;">
+                    <div class="card-body text-center">
+                        <h6 class="text-primary">Mockup</h6>
+                        <h3 class="font-weight-bold">Sistem Tatib</h3>
+                        <p class="text-muted">
+                            <b>SisiTaTiB</b> merupakan prototipe website yang membantu dalam urusan administrasi pelanggaran, baik pelanggaran umum maupun kekerasan. Dengan tampilan modern dan fitur-fitur yang relevan, website ini dirancang untuk mendukung berbagai aspek penegakan tata tertib di JTI.
+                        </p>
+                        <a target="_blank" href="view/HomepageImage/tentangImage.png" class="d-block">
+                            <img src="view/HomepageImage/tentangImage.png" alt="Mockup Image" class="img-fluid rounded shadow" style="width:150px;">
+                        </a>
                     </div>
                 </div>
-            </section>
-
+            </div>
+            <!-- /Card 2 -->
         </div>
     </div>
-    <!-- /Contact info-->
-
-    <!-- Footer -->
-    <footer class="text-center py-2">
-        <p class="mb-0">© 2024 kelompok 2 team . All rights reserved.</p>
-    </footer>
-    <!-- /Footer -->
+    <!-- /Tentang Kami -->
 
     <!-- Scripts -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

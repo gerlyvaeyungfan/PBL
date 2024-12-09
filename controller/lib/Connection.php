@@ -54,8 +54,8 @@ class Connection {
     }
 }
 
-// // Penggunaan
-// $connection = new Connection();
-// $conn = $connection->connect();
+// Penggunaan
+$connection = new Connection();
+$conn = $connection->connect();
 
 ?>

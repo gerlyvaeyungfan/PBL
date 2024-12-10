@@ -170,26 +170,6 @@ body {
     gap: 10px;
 }
 
-.notif {
-    float: right;
-    background-color: #D9D9D9; /* Warna kotak */
-    color: #FF0000; /* Warna teks */
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
-    text-align: left; /* Teks rata tengah */
-    width: 376px;
-    height: 197px;
-}
-
-.notif p {
-    float: right;
-    background-color: #FF0000 ; /* Warna kotak */
-    color: #D9D9D9 ; /* Warna teks */
-    padding: 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan */
-    text-align: left; /* Teks rata tengah */
-}
-
 .garis {
     border-top: 1px solid black;
     margin: 10px 0;
@@ -208,23 +188,5 @@ body {
     border-collapse: collapse;
     width: 70%;
     margin-left: 10px;
-}
-
-.buttons {
-    margin-top: 20px;
-}
-
-.buttons button {
-    background-color: #ff9900;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.buttons button:hover {
-    background-color: #cc7a00;
 }
 

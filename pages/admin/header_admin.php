@@ -33,7 +33,7 @@ if (isset($_GET['page'])) {
         case 'dashboard':
             ?>
             <div class="header1" style="background-color: #889CFE; padding: 10px 10px; height: 60px; display: flex; align-items: center; max-width: 100%; box-sizing: border-box;">
-                <h1 style="margin-left: 10px; font-size: 20px; color: #353333; margin-right: 10px; white-space: nowrap;">Dashboard</h1>
+                <h1 style="margin-left: 10px; font-size: 20px; color: #353333; margin-right: 10px; white-space: nowrap;">Dashboard Admin</h1>
             </div><?php
             break;
         case 'tambah_akun':

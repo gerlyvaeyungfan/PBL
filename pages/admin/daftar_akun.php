@@ -68,29 +68,39 @@ if ($stmt_admin === false || $stmt_dosen === false || $stmt_mahasiswa === false)
     </style>
 </head>
 <body>
-<div style="background-color: #ffffff; padding: 20px; padding-bottom: 20px; margin: 0; border-radius: 8px; width: calc(100% - 0px); height: 100%; max-height: 460px; overflow-y: auto; box-sizing: border-box;">
-
+<div style="
+    background-color:
+    #ffffff;
+    padding: 
+    20px; 
+    padding-bottom: 30px; 
+    margin: 0; 
+    border-radius: 8px; 
+    width: calc(100% - 0px); 
+    height: 100%;
+    box-sizing:
+    border-box;">
 <!-- Tombol Tambah Akun -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
         <!-- Form pencarian di kiri -->
-        <form method="GET" action="admin_dashboard.php" style="display: flex; align-items: center; margin-bottom: 20px; margin-top: 10px;">
+        <form method="GET" action="admin_dashboard.php" style="display: flex; align-items: center; margin-bottom: 10px; margin-top: 10px;">
             <input type="hidden" name="page" value="daftar_akun">
             <input 
                 type="text" 
                 name="search" 
                 placeholder="Cari Username" 
                 value="<?= htmlspecialchars($search) ?>" 
-                style="padding: 10px; font-size: 14px; width: 250px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px;"
+                style="padding: 10px; font-size: 14px; width: 250px; border: 1px solid #ccc; border-radius: 5px; margin-right: 10px; margin-bottom: 10px;"
             >
             <button 
                 type="submit" 
-                style="padding: 10px 20px; font-size: 14px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer;">
+                style="margin-bottom: 10px; padding: 10px; font-size: 14px; background-color: #007BFF; color: white; border: none; border-radius: 5px; cursor: pointer; width: 75px; text-align: center;">
                 Cari
             </button>
         </form>
 
         <!-- Tombol Tambah Akun di kanan -->
-        <a href="admin_dashboard.php?page=tambah_akun" style="background-color: green; color: white; padding: 10px 15px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px;">Tambah Akun</a>
+        <a href="admin_dashboard.php?page=tambah_akun" style="background-color: green; color: white; padding: 10px; text-decoration: none; border-radius: 5px; font-weight: bold; font-size: 14px; text-align: center; width: 150px;">Tambah Akun</a>
     </div>
     
     <?php if ($search): ?>
@@ -107,7 +117,7 @@ if ($stmt_admin === false || $stmt_dosen === false || $stmt_mahasiswa === false)
                     <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Username</th>
                     <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Role</th>
                     <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">ID Dosen</th>
-                    <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 150px;">Aksi</th>
+                    <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 130px;">Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -138,7 +148,7 @@ if ($stmt_admin === false || $stmt_dosen === false || $stmt_mahasiswa === false)
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Username</th>
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Role</th>
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">ID Dosen</th>
-                <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 150px;">Aksi</th>
+                <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 130px;">Aksi</th>
             </tr>
         </thead>
         <tbody>
@@ -169,7 +179,7 @@ if ($stmt_admin === false || $stmt_dosen === false || $stmt_mahasiswa === false)
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Username</th>
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">Role</th>
                 <th style="border: 1px solid #cce7ff; padding: 10px; text-align: left; background-color: #004080; color: #ffffff;">ID Mahasiswa</th>
-                <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 150px;">Aksi</th>
+                <th style="border: 1px solid #cce7ff; padding: 10px; text-align: center; background-color: #004080; color: #ffffff; width: 130px;">Aksi</th>
             </tr>
         </thead>
         <tbody>

@@ -262,9 +262,6 @@ if (isset($_POST['add-mhs'])) {
                             break;
                         
                     case 'data_dosen':
-                        ?>
-                            <div style="background-color: #ffffff; padding: 20px; padding-bottom: 30px; margin: 0; border-radius: 8px; width: calc(100% - 0px); height: 100%; max-height: 460px; overflow-y: auto; box-sizing: border-box;">
-                        <?php
                         // Query untuk mendapatkan data dosen
                         $query = "SELECT 
                         d.nama, 

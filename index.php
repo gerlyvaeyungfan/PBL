@@ -101,9 +101,6 @@ if ($stmt === false) {
                     <a class="nav-link" href="#about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#profile">Profile</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="login.php">Login</a>
                 </li>
             </ul>
@@ -173,8 +170,9 @@ if ($stmt === false) {
     <br>
     <br>
     <!-- Tentang Kami -->
+    <!--    Card 1 -->
     <div id="about" class="container my-5">
-        <h1 class="text-center mb-4">Konsep Website</h1>
+        <h1 class="text-center mb-4">Flowhcart System website tata tertib</h1>
         <div class="row justify-content-center">
             <!-- Card 1 -->
             <div class="col-md-6 mb-3 d-flex justify-content-center">
@@ -183,10 +181,10 @@ if ($stmt === false) {
                         <h6 class="text-primary">Flowchart</h6>
                         <h3 class="font-weight-bold">Sistem Tatib</h3>
                         <p class="text-muted">
-                            <b>SisiTaTiB</b> merupakan website realtime dalam menunjang penegakan tata tertib di JTI dengan konsep *real-time processing*. Website ini memberikan informasi terkini dalam pelaporan, pelaksanaan sanksi, serta hal-hal lain yang berkaitan dengan tata tertib di JTI.
+                            <b>TATIB</b><br>Flowchart dosen ini memberikan gambaran mengenai alur system yg akan di lalui oleh user dengan role <b>Dosen</b>
                         </p>
-                        <a target="_blank" href="view/HomepageImage/tentangImage.png" class="d-block">
-                            <img src="view/HomepageImage/tentangImage.png" alt="Flowchart Image" class="img-fluid rounded shadow" style="width:150px;">
+                        <a target="_blank" href="view/HomepageImage/FlowchartDosen.png" class="d-block">
+                            <img src="view/HomepageImage/FlowchartDosen.png" alt="Flowchart Image" class="img-fluid rounded shadow" style="width:150px;">
                         </a>
                     </div>
                 </div>
@@ -197,18 +195,36 @@ if ($stmt === false) {
             <div class="col-md-6 mb-3 d-flex justify-content-center">
                 <div class="card shadow-sm" style="width: 100%; max-width: 500px;">
                     <div class="card-body text-center">
-                        <h6 class="text-primary">Mockup</h6>
+                        <h6 class="text-primary">Flowchart</h6>
                         <h3 class="font-weight-bold">Sistem Tatib</h3>
                         <p class="text-muted">
-                            <b>SisiTaTiB</b> merupakan prototipe website yang membantu dalam urusan administrasi pelanggaran, baik pelanggaran umum maupun kekerasan. Dengan tampilan modern dan fitur-fitur yang relevan, website ini dirancang untuk mendukung berbagai aspek penegakan tata tertib di JTI.
+                            <b>TATIB</b><br>Flowchart Mahasiswa ini memberikan gambaran mengenai alur system yg akan di lalui oleh user dengan role <b>Mahasiswa</b>
                         </p>
-                        <a target="_blank" href="view/HomepageImage/tentangImage.png" class="d-block">
-                            <img src="view/HomepageImage/tentangImage.png" alt="Mockup Image" class="img-fluid rounded shadow" style="width:150px;">
+                        <a target="_blank" href="view/HomepageImage/FlowchartMahasiswa.png" class="d-block">
+                            <img src="view/HomepageImage/FlowchartMahasiswa.png" alt="Mockup Image" class="img-fluid rounded shadow" style="width:150px;">
                         </a>
                     </div>
                 </div>
             </div>
             <!-- /Card 2 -->
+
+            <!--            card 3 -->
+
+            <div class="col-md-6 mb-3 d-flex justify-content-center">
+                <div class="card shadow-sm" style="width: 100%; max-width: 500px;">
+                    <div class="card-body text-center">
+                        <h6 class="text-primary">Flowchart</h6>
+                        <h3 class="font-weight-bold">Sistem Tatib</h3>
+                        <p class="text-muted">
+                            <b>TATIB</b><br>Flowchart admin ini memberikan gambaran mengenai alur system yg akan di lalui oleh user dengan role <b>Admin</b>
+                        </p>
+                        <a target="_blank" href="view/HomepageImage/FlowchartAdmin.png" class="d-block">
+                            <img src="view/HomepageImage/FlowchartAdmin.png" alt="Mockup Image" class="img-fluid rounded shadow" style="width:150px;">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--            /card 3 -->
         </div>
     </div>
     <!-- /Tentang Kami -->

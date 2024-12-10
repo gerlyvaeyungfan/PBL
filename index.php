@@ -14,7 +14,8 @@ SELECT
     tingkat.deskripsi AS deskripsi_tingkat
 FROM pelanggaran
 LEFT JOIN tingkat
-ON pelanggaran.tingkat_sanksi = tingkat.tingkat;
+ON pelanggaran.tingkat_sanksi = tingkat.tingkat
+ORDER BY pelanggaran.tingkat_sanksi ASC;
 ";
 //Test
 $stmt = sqlsrv_query($conn, $sql);

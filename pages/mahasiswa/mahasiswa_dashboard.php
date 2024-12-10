@@ -1,19 +1,32 @@
 <?php
-session_start();
+// Memulai sesi di header.php sehingga hanya dimulai sekali
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+    $_SESSION['role'] = 'mahasiswa';
+}
 
-// Cek apakah pengguna sudah login dan memiliki role 'mahasiswa'
+// Cek apakah pengguna sudah login dan memiliki role 'admin'
 if (!isset($_SESSION['role']) || $_SESSION['role'] !== 'mahasiswa') {
-    header('Location: ../login.php'); // Arahkan ke halaman login jika bukan mahasiswa
+    header('Location: ../../login.php'); // Arahkan ke halaman login jika bukan admin
     exit;
 }
+
 // Menambahkan fitur logout
 if (isset($_GET['logout'])) {
     session_destroy();  // Hapus sesi
-    header('Location: http://localhost/PBL/login.php'); // Arahkan ke halaman login setelah logout
+    header('Location:../../../PBL'); // Arahkan ke halaman login setelah logout
     exit;
 }
-?>
 
+// Koneksi ke database
+include('../../controller/lib/Connection.php');
+
+$connection = new Connection();
+$conn = $connection->connect();
+
+// Memulai output buffering
+ob_start();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,102 +34,188 @@ if (isset($_GET['logout'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mahasiswa Dashboard</title>
-    <link rel="stylesheet" href="../view/style/Mahasiswacss.css">
+    <title>TATIB Dashboard</title>
+    <link rel="stylesheet" href="../../view/style/Mahasiswacss.css">
+    <style>
+        .form-container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+        label {
+            color: #004080;
+            font-weight: bold;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #cce7ff;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #004080;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #003366;
+        }
+        form {
+            margin: 0; /* Mengatur margin form menjadi 0 */
+            width: 100%; /* Pastikan form memanfaatkan seluruh lebar */
+            box-sizing: border-box;
+        }
+</style>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#"></a>
-        <img src="../view/img/jti.png">
-        <p>Sistem Informasi Tata Tertib</p>
-        <span class="navbar-toggler-icon"></span>
-    </nav>
+    <!-- Sidebar -->
+    <?php include('../navbar.php');?>
 
     <div class="container">
 
         <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo"></div>
-            <div class="user-info">
-                <img src="../view/img/siswi1.jpeg" alt="Foto Mahasiswa">
-                <table>
-                    <tr>
-                        <td>Nama Mahasiswa</td>
-                    </tr>
-                    <tr>
-                        <td>NIM</td>
-                    </tr>
-                    <tr>
-                        <td>Kelas</td>
-                    </tr>
-                </table>
-                <br>
-            </div>
-            <ul class="menu">
-                <p>MAIN MENU</p>
-                <li>Periode: 2024/2025</li>
-                <li>Dashboard</li>
-                <li>Riwayat Pelanggaran</li>
-                <li>Ganti Password</li>
-                <li><a href="?logout=true">Logout</a></li> <!-- Menambahkan link logout -->
-            </ul>
-        </div>
+        <?php include('sidebar_mahasiswa.php');?>
 
         <!-- Main Content -->
         <div class="main-content">
-            <div class="header1">
-                <h1>Dashboard</h1>
-            </div>
-            <div class="notif">
-                <h4>Notifikasi!</h4>
-                    <div class="garis"></div>
-                    <p> Halo! Vera Efita Hudi Putri, kamu mendapatkan laporan pelanggaran</p>
-                </div>
-            <div class="content">
-                
-                <h2>Informasi Mahasiswa</h2>
-                <p class="info">Info! Berikut adalah biodata diri anda</p>
-                
-                <div class="biodata">
-                    <img src="../view/img/siswi1.jpeg" alt="Foto Mahasiswa">
-                    <table>
-                        <tr>
-                            <td>Nama</td>
-                            <td>: Vera Efita Hudi Putri</td>
-                        </tr>
-                        <tr>
-                            <td>NIM</td>
-                            <td>: 2341760047</td>
-                        </tr>
-                        <tr>
-                            <td>TTL</td>
-                            <td>: Tuban, 22 September 2004</td>
-                        </tr>
-                        <tr>
-                            <td>Jenis Kelamin</td>
-                            <td>: Perempuan</td>
-                        </tr>
-                        <tr>
-                            <td>Alamat</td>
-                            <td>: jln. Senggani no 43D</td>
-                        </tr>
-                        <tr>
-                            <td>Email</td>
-                            <td>: efitaraa22@gmail.com</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="buttons">
-                    <button>Print</button>
-                    <button>PDF</button>
-                </div>
-                
-            </div>
+        <?php include('header_mahasiswa.php');
+
+            if (isset($_GET['page'])) {
+                $page = $_GET['page'];
+                switch ($page) {
+                    case 'pelanggaran':
+                        include('riwayat_pelanggaran.php');
+                        break;
+                        
+                    case 'sanksi':
+                        include('Sanksi.php');
+                        break;
+                    case 'dashboard':
+                        ?>
+                            <div style="background-color: #ffffff; padding: 20px; padding-bottom: 30px; margin: 0; border-radius: 8px; width: calc(100% - 0px); height: 100%; max-height: 460px; overflow-y: auto; box-sizing: border-box;">
+                            <?php
+                            if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+                                $username = $_SESSION['username'];
+                                $role = $_SESSION['role'];
+                        
+                                // Tentukan query berdasarkan role
+                                $query_foto = "";
+                                if ($role == 'mahasiswa') {
+                                    $query_foto = "SELECT * FROM mahasiswa WHERE id = (SELECT mahasiswa_id FROM akun WHERE username = ?)";
+                                }
+                        
+                                // Eksekusi query hanya jika valid
+                                if (!empty($query_foto)) {
+                                    $params = array($username);
+                                    $stmt_foto = sqlsrv_query($conn, $query_foto, $params);
+                        
+                                    // Validasi hasil query
+                                    if ($stmt_foto === false) {
+                                        die(print_r(sqlsrv_errors(), true));
+                                    }
+                        
+                                    // Ambil data jika query berhasil
+                                    if (sqlsrv_has_rows($stmt_foto)) {
+                                        $foto = sqlsrv_fetch_array($stmt_foto, SQLSRV_FETCH_ASSOC);
+                        
+                                        // Tampilkan data
+                                        echo '<h2>Informasi ' . ucfirst($role) . '</h2>';
+                                        echo '<img src="' . htmlspecialchars($foto['foto_mahasiswa'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width:100px; height:auto;">';
+
+                            // Tampilkan biodata berdasarkan role
+                            echo '<table>';
+                            if ($role == 'mahasiswa') {
+                                echo '<br><tr><td>Nama</td><td>: ' . htmlspecialchars($foto['nama']) . '</td></tr>';
+                                echo '<tr><td>NIM</td><td>: ' . htmlspecialchars($foto['nim']) . '</td></tr>';
+                                echo '<tr><td>Jenis Kelamin</td><td>: ' . htmlspecialchars($foto['jk']) . '</td></tr>';
+                                echo '<tr><td>Alamat</td><td>: ' . htmlspecialchars($foto['alamat']) . '</td></tr>';
+                                echo '<tr><td>Email</td><td>: ' . htmlspecialchars($foto['email']) . '</td></tr>';
+                            }
+                        }
+                            echo '</table></div>';
+
+                        } else {
+                            echo '<p>Data tidak ditemukan.</p>';
+                        }
+                    } else {
+                        echo '<p>Query tidak valid.</p>';
+                    }
+                    
+                        break;
+
+                    default:
+                        echo '<h2>Halaman tidak ditemukan</h2>';
+                        break;
+                }
+            } else {
+                 ?>
+                            <div style="background-color: #ffffff; padding: 20px; padding-bottom: 30px; margin: 0; border-radius: 8px; width: calc(100% - 0px); height: 100%; max-height: 460px; overflow-y: auto; box-sizing: border-box;">
+                            <?php
+                if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+                    $username = $_SESSION['username'];
+                    $role = $_SESSION['role'];
             
+                    // Tentukan query berdasarkan role
+                    $query_foto = "";
+                    if ($role == 'mahasiswa') {
+                        $query_foto = "SELECT * FROM mahasiswa WHERE id = (SELECT mahasiswa_id FROM akun WHERE username = ?)";
+                    }
+            
+                    // Eksekusi query hanya jika valid
+                    if (!empty($query_foto)) {
+                        $params = array($username);
+                        $stmt_foto = sqlsrv_query($conn, $query_foto, $params);
+            
+                        // Validasi hasil query
+                        if ($stmt_foto === false) {
+                            die(print_r(sqlsrv_errors(), true));
+                        }
+            
+                        // Ambil data jika query berhasil
+                        if (sqlsrv_has_rows($stmt_foto)) {
+                            $foto = sqlsrv_fetch_array($stmt_foto, SQLSRV_FETCH_ASSOC);
+            
+                            // Tampilkan data
+                            echo '<h2>Informasi ' . ucfirst($role) . '</h2>';
+                            echo '<img src="' . htmlspecialchars($foto['foto_mahasiswa'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width:100px; height:auto;">';
+
+                // Tampilkan biodata berdasarkan role
+                echo '<table>';
+                if ($role == 'mahasiswa') {
+                    echo '<br><tr><td>Nama</td><td>: ' . htmlspecialchars($foto['nama']) . '</td></tr>';
+                    echo '<tr><td>NIM</td><td>: ' . htmlspecialchars($foto['nim']) . '</td></tr>';
+                    echo '<tr><td>Jenis Kelamin</td><td>: ' . htmlspecialchars($foto['jk']) . '</td></tr>';
+                    echo '<tr><td>Alamat</td><td>: ' . htmlspecialchars($foto['alamat']) . '</td></tr>';
+                    echo '<tr><td>Email</td><td>: ' . htmlspecialchars($foto['email']) . '</td></tr>';
+                }
+            }
+                echo '</table></div>';
+
+            } else {
+                echo '<p>Data tidak ditemukan.</p>';
+            }
+        } else {
+            echo '<p>Query tidak valid.</p>';
+        }
+            }
+            ?>
         </div>
-    </div>
     </div>
 </body>
 
 </html>
+
+<?php
+// Mengakhiri output buffering dan mengirimkan output ke browser
+ob_end_flush();
+?>

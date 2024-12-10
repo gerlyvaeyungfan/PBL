@@ -66,7 +66,9 @@
                                 <th>Nama Mahasiswa</th>
                                 <th>Tingkat Pelanggaran</th>
                                 <th>Lihat</th>
-                                <th>Konfirmasi</th>
+                                <th>Konfirmasi Pelanggaran</th>
+                                <th>File Sanksi</th>
+                                <th>Konfirmasi Sanksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -76,6 +78,16 @@
                                 <td>Muhammad Rizky</td>
                                 <td>I</td>
                                 <td><button class="button-view">Lihat</button></td>
+                                <td>
+                                    <span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span>
+                                </td>
+                                <td><span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span></td>
                                 <td>
                                     <span class="icon-check-wrapper">
                                         <span class="icon-check">&#x2714;</span>
@@ -95,6 +107,16 @@
                                         <span class="icon-cross">&#x2718;</span>
                                     </span>
                                 </td>
+                                <td><span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span></td>
+                                <td>
+                                    <span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>3</td>
@@ -102,6 +124,16 @@
                                 <td>Violin Snata Putra</td>
                                 <td>II</td>
                                 <td><button class="button-view">Lihat</button></td>
+                                <td>
+                                    <span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span>
+                                </td>
+                                <td><span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span></td>
                                 <td>
                                     <span class="icon-check-wrapper">
                                         <span class="icon-check">&#x2714;</span>
@@ -121,6 +153,16 @@
                                         <span class="icon-cross">&#x2718;</span>
                                     </span>
                                 </td>
+                                <td><span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span></td>
+                                <td>
+                                    <span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span>
+                                </td>
                             </tr>
                             <tr>
                                 <td>5</td>
@@ -128,6 +170,16 @@
                                 <td>Intan Nur Aini</td>
                                 <td>III</td>
                                 <td><button class="button-view">Lihat</button></td>
+                                <td>
+                                    <span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span>
+                                </td>
+                                <td><span class="icon-check-wrapper">
+                                        <span class="icon-check">&#x2714;</span>
+                                        <span class="icon-cross">&#x2718;</span>
+                                    </span></td>
                                 <td>
                                     <span class="icon-check-wrapper">
                                         <span class="icon-check">&#x2714;</span>
@@ -144,4 +196,5 @@
     </div>
     </div>
 </body>
+
 </html>

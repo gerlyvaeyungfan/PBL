@@ -1,0 +1,45 @@
+echo '<style>
+                h2 {
+                    text-align: center;
+                    color: #004080;
+                    margin-top: 5px;
+                }
+                label {
+                    color: #004080;
+                    font-weight: bold;
+                }
+                input, select, button {
+                    width: 100%;
+                    padding: 10px;
+                    margin-top: 8px;
+                    margin-bottom: 16px;
+                    border: 1px solid #cce7ff;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                }
+                button {
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+                .button-yellow {
+                    background-color: #ffcc00;
+                    color: #ffffff;
+                    border: none;
+                }
+                .button-yellow:hover {
+                    background-color: #e6b800;
+                }
+                .button-red {
+                    background-color: #ff3333;
+                    color: #ffffff;
+                    border: none;
+                }
+                .button-red:hover {
+                    background-color: #e60000;
+                }
+                form {
+                    margin: 0;
+                    width: 100%;
+                    box-sizing: border-box;
+                }
+              </style>';

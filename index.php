@@ -8,7 +8,6 @@ $conn = $connection->connect();
 // Query untuk mengambil data dari tabel pelanggaran dengan JOIN ke tabel sanksi
 $sql = "
 SELECT 
-    pelanggaran.id,
     pelanggaran.deskripsi AS deskripsi_pelanggaran,
     pelanggaran.tingkat_sanksi,
     tingkat.deskripsi AS deskripsi_tingkat
@@ -101,9 +100,6 @@ if ($stmt === false) {
                     <a class="nav-link" href="#about">About us</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#profile">Profile</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="login.php">Login</a>
                 </li>
             </ul>
@@ -141,7 +137,6 @@ if ($stmt === false) {
         <table class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>ID</th>
                 <th>Deskripsi Pelanggaran</th>
                 <th>Tingkatan</th>
                 <th>Deskripsi Sanksi</th>
@@ -151,7 +146,6 @@ if ($stmt === false) {
             <?php if ($stmt !== false && sqlsrv_has_rows($stmt)): ?>
                 <?php while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)): ?>
                     <tr>
-                        <td><?= htmlspecialchars($row['id']) ?></td>
                         <td><?= htmlspecialchars($row['deskripsi_pelanggaran']) ?></td>
                         <td><?= htmlspecialchars($row['tingkat_sanksi']) ?></td>
                         <td><?= htmlspecialchars($row['deskripsi_tingkat'] ?? 'Tidak ada sanksi') ?></td>

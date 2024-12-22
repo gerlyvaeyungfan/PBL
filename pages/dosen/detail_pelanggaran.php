@@ -55,7 +55,6 @@ ob_end_clean();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pelanggaran Mahasiswa</title>
-    <link rel="stylesheet" href="../../view/style/Dosencss.css">
     <style>
         .btn-back {
             background-color: #4CAF50;
@@ -119,8 +118,6 @@ ob_end_clean();
 
 <body>
     <?php include('../navbar.php'); ?>
-    <?php include('sidebar_dosen.php'); ?>
-
     <div class="detail-container">
     <h2>Detail Laporan Pelanggaran Mahasiswa</h2>
 

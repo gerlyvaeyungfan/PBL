@@ -84,14 +84,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
     }
 }
 ?>
-
+<?php include('../navbar.php');?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Upload Bukti Sanksi</title>
-    <link rel="stylesheet" href="Sanksi.css">
     <style>
         .alert { padding: 15px; margin-bottom: 20px; border-radius: 5px; font-size: 16px; }
         .alert.success { background-color: #d4edda; color: #155724; }

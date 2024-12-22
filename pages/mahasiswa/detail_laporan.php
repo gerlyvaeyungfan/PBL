@@ -55,7 +55,6 @@ ob_end_clean();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Pelanggaran Mahasiswa</title>
-    <link rel="stylesheet" href="../../view/style/Mahasiswacss.css">
     <style>
         .btn-back {
             background-color: #4CAF50;
@@ -63,6 +62,7 @@ ob_end_clean();
             padding: 8px 16px;
             text-decoration: none;
             border-radius: 5px;
+            justify-items: center   ;
             font-size: 14px;
         }
 
@@ -75,6 +75,7 @@ ob_end_clean();
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            justify-items: center;
         }
 
         .detail-container h2 {
@@ -119,8 +120,6 @@ ob_end_clean();
 
 <body>
     <?php include('../navbar.php'); ?>
-    <?php include('sidebar_mahasiswa.php'); ?>
-
     <div class="detail-container">
     <h2>Detail Laporan Pelanggaran Mahasiswa</h2>
 

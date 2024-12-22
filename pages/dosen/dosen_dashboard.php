@@ -86,7 +86,7 @@ $conn = $connection->connect();
 
         <!-- Sidebar -->
         <?php include('sidebar_dosen.php');?>
-
+        <?php include('../navbar.php');?>
         <!-- Main Content -->
         <div class="main-content">
         <?php include('header_dosen.php');

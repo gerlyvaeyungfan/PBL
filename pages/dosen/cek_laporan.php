@@ -104,7 +104,6 @@ if (isset($_GET['verifikasi']) && isset($_GET['id_laporan'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Verifikasi Pelanggaran Mahasiswa</title>
-    <link rel="stylesheet" href="../../view/style/Dosencss.css">
     <style>
         .button {
             display: inline-block;
@@ -175,8 +174,6 @@ if (isset($_GET['verifikasi']) && isset($_GET['id_laporan'])) {
 
 <body>
     <?php include('../navbar.php'); ?>
-    <?php include('sidebar_dosen.php'); ?>
-
     <div style="background-color: #ffffff; padding: 20px; border-radius: 8px;">
         <?php if (!empty($pelanggaran_list)): ?>
             <h2>Verifikasi Pelanggaran Mahasiswa</h2>

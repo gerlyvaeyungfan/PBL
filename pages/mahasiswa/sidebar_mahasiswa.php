@@ -1,119 +1,96 @@
-<?php 
-if (isset($_SESSION['mahasiswa_id'])) {
-    $mahasiswa_id = intval($_SESSION['mahasiswa_id']);
-    }
-?>
 <style>
-    .menu table {
+    .menu {
         width: 100%;
-        border-collapse: collapse;
+        margin-top: 5px;
+        padding: 0;
     }
 
-    .menu td {
-        padding: 10px;
-        text-align: left;
-        cursor: pointer;
-        background-color: #889CFE; /* Warna default */
-        color: #353333; /* Warna teks default */
+
+    .menu p {
+        font-size: 14px;
+        font-weight: bold;
+        margin-left: 10px;
+        color: rgb(255, 255, 255);
+    }
+
+    .menu a {
+        display: block;
+        padding: 10px 15px;
+        border-radius: 15px;
+        text-decoration: none;
+        color: white;
         font-size: 12px;
         transition: all 0.3s ease;
+        background-color: transparent; /* Default */
     }
 
-    /* Menonaktifkan hover dan cursor untuk elemen tertentu */
-    .menu td.no-hover {
-        pointer-events: none; /* Menonaktifkan interaksi (klik) */
-        cursor: default; /* Menonaktifkan cursor pointer */
-        background-color: #889CFE; /* Warna non-aktif */
-        color: #353333; /* Menyesuaikan warna teks */
-        transition: none; /* Menonaktifkan transisi */
+    .menu a:hover {
+        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(46, 58, 218));
+        color: #FFFFFF;
+        font-weight: bold;
+        border-radius: 15px;
     }
 
-    /* Warna saat elemen aktif */
-    .menu td.active {
-        background-color: #4458a5; /* Warna aktif */
-        color: #FFFFFF; /* Warna teks aktif */
+    .menu a.active {
+        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(62, 73, 223));
+        color: #FFFFFF;
+        font-weight: bold;
+        border-radius: 15px;
+    }
+
+    .menu .no-hover {
+        pointer-events: none;
+        color: rgb(67, 87, 185);
+        font-size: 14px;
+        margin-left: 15px;
+        margin-bottom: 10px;
         font-weight: bold;
     }
-
-    .menu td a {
-        text-decoration: none;
-        color: inherit;
-        font-size: 12px;
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
 </style>
+<!--Warna side bar -->
+<div class="sidebar" style="background: linear-gradient(160deg, rgb(66,55,205), rgb(55,68,237)); color: #202bc8; width: 200px; margin-top: 60px;  height: 110%; z-index: 1000;">
+    <!--   /warna side bar-->
+    <div class="logo" style="font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+        <?php
+        if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+            $username = $_SESSION['username'];
+            $role = $_SESSION['role'];
 
-<div class="sidebar" style="background-color: #F4F2EC; color: #696161; width: 200px; display: flex; flex-direction: column; align-items: flex-start; padding: 0px; margin-top: 60px; position: fixed; top: 0; left: 0; height: 100%; z-index: 1000;">
+            // Tentukan query berdasarkan role
+            $query_foto = "";
+            if ($role == 'mahasiswa') {
+                $query_foto = "SELECT * FROM mahasiswa WHERE id = (SELECT mahasiswa_id FROM akun WHERE username = ?)";
+            }
 
-    <div class="logo" style="font-size: 24px; font-weight: bold; margin-bottom: 20px; display: flex; align-items: center;"></div>
-    <div class="user-info" style="display: flex; align-items: center; padding: 10px; gap: 20px;">
-        <img src="../../view/ProfileDosen/dosen.png" alt="Foto Dosen" style="width: 60px; height: 60px; margin-left: 0px; margin-top: 10px;">
-        <table style="font-size: 12px; color: #302D2D;">
-            <tr>
-                <td>Nama Mahasiswa</td>
-            </tr>
-        </table>
-    </div>
+            // Eksekusi query hanya jika valid
+            if (!empty($query_foto)) {
+                $params = array($username);
+                $stmt_foto = sqlsrv_query($conn, $query_foto, $params);
 
-    <div class="menu" style="width: 100%; margin-top: 5px;">
-        <p style="font-size: 14px; font-weight: bold; margin-left: 10px; color: #353333;">MAIN MENU</p>
-        <table>
-            <tr>
-                <td class="no-hover">Periode 2024/2025</td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="mahasiswa_dashboard.php?page=dashboard">Profil</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="mahasiswa_dashboard.php?page=pelanggaran">Riwayat Pelanggaran</a>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <a href="?logout=true">Logout</a>
-                </td>
-            </tr>
-        </table>
-    </div>
-</div>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const menuItems = document.querySelectorAll('.menu td');
-
-        menuItems.forEach(item => {
-            item.addEventListener('click', function () {
-                // Pastikan klik pada <td> juga memicu <a>
-                const link = this.querySelector('a');
-                if (link) {
-                    link.click();
+                // Validasi hasil query
+                if ($stmt_foto === false) {
+                    die(print_r(sqlsrv_errors(), true));
                 }
 
-                // Hapus kelas 'active' dari semua elemen
-                menuItems.forEach(i => i.classList.remove('active'));
-
-                // Tambahkan kelas 'active' hanya ke elemen yang diklik
-                this.classList.add('active');
-            });
-        });
-
-        // Menandai elemen aktif berdasarkan URL (opsional)
-        const currentUrl = window.location.href;
-        menuItems.forEach(item => {
-            const link = item.querySelector('a');
-            if (link && currentUrl.includes(link.getAttribute('href'))) {
-                item.classList.add('active');
+                // Ambil data jika query berhasil
+                if (sqlsrv_has_rows($stmt_foto)) {
+                    $foto = sqlsrv_fetch_array($stmt_foto, SQLSRV_FETCH_ASSOC);
+                    echo '<img src="' . htmlspecialchars($foto['foto_mahasiswa'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width: 70px; height: 70px; margin-top: 10px;">';
+                } else {
+                    echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px;">';
+                }
             }
-        });
-    });
-</script>
+        } else {
+            echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px;">';
+        }
+        ?>
+    </div>
 
-<!-- Content container for the page -->
-<div style="margin-left: 200px; padding: 0px;">
-    <!-- Other content goes here -->
+    <div class="menu">
+        <div class="no-hover" style="color: black">Periode 2024/2025</div>
+        <p>MAIN MENU</p>
+        <a href="mahasiswa_dashboard.php?page=dashboard">Profil</a>
+        <a href="mahasiswa_dashboard.php?page=pelanggaran">Riwayat Pelanggaran</a>
+        <a href="?logout=true">Logout</a>
+    </div>
 </div>

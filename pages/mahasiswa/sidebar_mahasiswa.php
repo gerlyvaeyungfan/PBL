@@ -25,14 +25,14 @@
     }
 
     .menu a:hover {
-        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(46, 58, 218));
+        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(2, 10, 125));
         color: #FFFFFF;
         font-weight: bold;
         border-radius: 15px;
     }
 
     .menu a.active {
-        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(62, 73, 223));
+        background: linear-gradient(190deg, rgb(227, 221, 255), rgb(2, 10, 125));
         color: #FFFFFF;
         font-weight: bold;
         border-radius: 15px;
@@ -48,7 +48,10 @@
     }
 </style>
 <!--Warna side bar -->
-<div class="sidebar" style="background: linear-gradient(160deg, rgb(66,55,205), rgb(55,68,237)); color: #202bc8; width: 200px; margin-top: 60px;  height: 110%; z-index: 1000;">
+<div class="sidebar" style="background: linear-gradient(160deg, rgb(227, 221, 255), rgb(2, 10, 125)); color: #696161; width: 200px; margin-top: 60px;  height: 110%; z-index: 1000;">
+<div class="logo" style="font-weight: bold; margin-bottom: 40px; display: flex; align-items: center; justify-content: center;">
+        <img src="../../view/img/logo/logo-sisitatib.png" alt="Logo" style="width: 200px; height: 32px; margin-left: 0px; margin-top: 8px; border: 0px;">
+    </div>
     <!--   /warna side bar-->
     <div class="logo" style="font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
         <?php

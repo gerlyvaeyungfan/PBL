@@ -2,7 +2,7 @@
 // Class Connection
 class Connection {
     private $use_driver = 'sqlsrv'; // Menentukan driver yang digunakan (sqlsrv)
-    private $host = 'LAPTOP-KVRUBH7N'; // Nama server
+    private $host = 'DESKTOP-53O8L0G'; // Nama server
     private $username = ''; // Username untuk koneksi database
     private $password = ''; // Password untuk koneksi database
     private $database = 'tata_tertib'; // Nama database yang akan digunakan

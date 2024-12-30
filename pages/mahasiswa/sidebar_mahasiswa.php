@@ -49,11 +49,11 @@
 </style>
 <!--Warna side bar -->
 <div class="sidebar" style="background: linear-gradient(160deg, rgb(227, 221, 255), rgb(2, 10, 125)); color: #696161; width: 200px; margin-top: 60px;  height: 110%; z-index: 1000;">
-<div class="logo" style="font-weight: bold; margin-bottom: 40px; display: flex; align-items: center; justify-content: center;">
+<div class="logo" style="font-weight: bold; margin-bottom: 10px;display:flex; align-items: center; justify-content: center;">
         <img src="../../view/img/logo/logo-sisitatib.png" alt="Logo" style="width: 200px; height: 32px; margin-left: 0px; margin-top: 8px; border: 0px;">
     </div>
     <!--   /warna side bar-->
-    <div class="logo" style="font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; justify-content: center;">
+    <div class="logo" style="font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
         <?php
         if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
             $username = $_SESSION['username'];
@@ -78,9 +78,9 @@
                 // Ambil data jika query berhasil
                 if (sqlsrv_has_rows($stmt_foto)) {
                     $foto = sqlsrv_fetch_array($stmt_foto, SQLSRV_FETCH_ASSOC);
-                    echo '<img src="' . htmlspecialchars($foto['foto_mahasiswa'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width: 70px; height: 70px; margin-top: 10px;">';
+                    echo '<img src="' . htmlspecialchars($foto['foto_mahasiswa'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width: 70px; height: 70px; margin-top: 10px; border-radius: 50%;">';
                 } else {
-                    echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px;">';
+                    echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px; border-radius: 50%;">';
                 }
             }
         } else {
@@ -97,3 +97,27 @@
         <a href="?logout=true">Logout</a>
     </div>
 </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const menuLinks = document.querySelectorAll('.menu a');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', function () {
+                // Hapus kelas 'active' dari semua link
+                menuLinks.forEach(i => i.classList.remove('active'));
+
+                // Tambahkan kelas 'active' hanya ke link yang diklik
+                this.classList.add('active');
+            });
+        });
+
+        // Menandai elemen aktif berdasarkan URL (opsional)
+        const currentUrl = window.location.href;
+        menuLinks.forEach(link => {
+            if (currentUrl.includes(link.getAttribute('href'))) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>

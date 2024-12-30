@@ -154,6 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id']) && $_GET['
         }
 
         .action-buttons {
+            border: 1px solid #cce7ff;
             text-align: center;
             width: 150px;
         }
@@ -178,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id']) && $_GET['
 </head>
 
 <body>
-<div style="
+    <div style="
     background-color: #ffffff;
     padding: 20px; 
     padding-bottom: 30px; 
@@ -188,151 +189,148 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id']) && $_GET['
     height: 100%;
     box-sizing:
     border-box;">
-    <div class="content">
-        <!-- Tombol Tambah Akun -->
-        <div class="search-container">
-            <!-- Form pencarian di kiri -->
-            <form method="GET" action="admin_dashboard.php" class="search-form">
-                <input type="hidden" name="page" value="daftar_akun">
-                <input
-                    type="text"
-                    name="search"
-                    placeholder="Cari Username"
-                    value="<?= htmlspecialchars($search) ?>"
-                    class="search-input">
-                <button
-                    type="submit"
-                    class="search-button">
-                    Cari
-                </button>
-            </form>
+        <div class="content">
+            <!-- Tombol Tambah Akun -->
+            <div class="search-container">
+                <!-- Form pencarian di kiri -->
+                <form method="GET" action="admin_dashboard.php" class="search-form">
+                    <input type="hidden" name="page" value="daftar_akun">
+                    <input
+                        type="text"
+                        name="search"
+                        placeholder="Cari Username"
+                        value="<?= htmlspecialchars($search) ?>"
+                        class="search-input">
+                    <button
+                        type="submit"
+                        class="search-button">
+                        Cari
+                    </button>
+                </form>
 
-            <!-- Tombol Tambah Akun di kanan -->
-            <a href="admin_dashboard.php?page=tambah_akun" class="add-account-button">
-                Tambah Akun
-            </a>
+                <!-- Tombol Tambah Akun di kanan -->
+                <a href="admin_dashboard.php?page=tambah_akun" class="add-account-button">
+                    Tambah Akun
+                </a>
+            </div>
+
+            <?php if ($search): ?>
+                <h2 style="color: rgba(0, 0, 0, 0.6);">Hasil Pencarian untuk: <?php echo htmlspecialchars($search); ?></h2>
+            <?php endif; ?>
+
+            <!-- Tampilkan Daftar Akun Admin -->
+            <?php if ($stmt_admin && sqlsrv_has_rows($stmt_admin)): ?>
+                <h1>Daftar Akun Admin</h1>
+                <table>
+                    <thead>
+                        <tr class="table-header">
+                            <th class="table-cell" style="text-align: center;">No</th>
+                            <th class="table-cell">Username</th>
+                            <th class="table-cell">Role</th>
+                            <th class="table-cell">ID Dosen</th>
+                            <th class="table-cell" style="text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        $loop_admin = 0; // Pastikan $loop_index diinisialisasi sebelum digunakan
+                        while ($row = sqlsrv_fetch_array($stmt_admin, SQLSRV_FETCH_ASSOC)): ?>
+                            <tr style="background-color: <?php echo $loop_admin++ % 2 == 0 ? '#ffffff' : '#f9f9f9'; ?>;">
+                                <td class="table-cell" style="text-align: center;"><?php echo $loop_admin; ?></td>
+                                <td class="table-cell"><?php echo htmlspecialchars($row['username']); ?></td>
+                                <td class="table-cell"><?php echo htmlspecialchars($row['role']); ?></td>
+                                <td class="table-cell"><?php echo htmlspecialchars($row['dosen_id']); ?></td>
+                                <td class="action-buttons">
+                                    <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
+                                    <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
+                                        <button type="button" class="delete-button">
+                                            Hapus
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+                <br>
+            <?php endif; ?>
+
+            <!-- Tampilkan Daftar Akun Dosen -->
+            <?php if ($stmt_dosen && sqlsrv_has_rows($stmt_dosen)): ?>
+                <h1>Daftar Akun Dosen</h1>
+                <table>
+                    <thead>
+                        <tr class="table-header">
+                            <th class="table-cell" style="text-align: center;">No</th>
+                            <th class="table-cell">Username</th>
+                            <th class="table-cell">Role</th>
+                            <th class="table-cell">ID Dosen</th>
+                            <th class="table-cell" style="text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        <?php $loop_dosen = 0;
+                        while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)): ?>
+                            <tr style="background-color: <?php echo $loop_dosen++ % 2 == 0 ? '#f9f9f9' : '#ffffff'; ?>;">
+                                <td class="table-cell" style="text-align: center;"><?php echo $loop_dosen; ?></td>
+                                <td class="table-cell"><?php echo $row['username']; ?></td>
+                                <td class="table-cell"><?php echo $row['role']; ?></td>
+                                <td class="table-cell"><?php echo $row['dosen_id']; ?></td>
+                                <td class="action-buttons">
+                                    <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
+                                    <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
+                                        <button type="button" class="delete-button">
+                                            Hapus
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+                <br>
+            <?php endif; ?>
+
+            <!-- Tampilkan Daftar Akun Mahasiswa -->
+            <?php if ($stmt_mahasiswa && sqlsrv_has_rows($stmt_mahasiswa)): ?>
+                <h1>Daftar Akun Mahasiswa</h1>
+                <table>
+                    <thead>
+                        <tr class="table-header">
+                            <th class="table-cell" style="text-align: center;">No</th>
+                            <th class="table-cell">Username</th>
+                            <th class="table-cell">Role</th>
+                            <th class="table-cell">ID Mahasiswa</th>
+                            <th class="table-cell" style="text-align: center;">Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $loop_mhs = 0;
+                        while ($row = sqlsrv_fetch_array($stmt_mahasiswa, SQLSRV_FETCH_ASSOC)): ?>
+                            <tr style="background-color: <?php echo $loop_mhs++ % 2 == 0 ? '#f9f9f9' : '#ffffff'; ?>;">
+                                <td class="table-cell" style="text-align: center;"><?php echo $loop_mhs; ?></td>
+                                <td class="table-cell"><?php echo $row['username']; ?></td>
+                                <td class="table-cell"><?php echo $row['role']; ?></td>
+                                <td class="table-cell"><?php echo $row['mahasiswa_id']; ?></td>
+                                <td class="action-buttons">
+                                    <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
+                                    <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>"
+                                        onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
+                                        <button type="button" class="delete-button">
+                                            Hapus
+                                        </button>
+                                    </a>
+                                </td>
+                            </tr>
+                        <?php endwhile; ?>
+                    </tbody>
+                </table>
+            <?php endif; ?>
         </div>
-
-        <?php if ($search): ?>
-            <h2 style="color: rgba(0, 0, 0, 0.6);">Hasil Pencarian untuk: <?php echo htmlspecialchars($search); ?></h2>
-        <?php endif; ?>
-
-        <!-- Tampilkan Daftar Akun Admin -->
-        <?php if ($stmt_admin && sqlsrv_has_rows($stmt_admin)): ?>
-            <h1>Daftar Akun Admin</h1>
-            <table>
-                <thead>
-                    <tr class="table-header">
-                        <th class="table-cell" style="text-align: center;">No</th>
-                        <th class="table-cell" style="text-align: center;">ID</th>
-                        <th class="table-cell">Username</th>
-                        <th class="table-cell">Role</th>
-                        <th class="table-cell">ID Dosen</th>
-                        <th class="table-cell" style="text-align: center;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php 
-                    $loop_admin = 0; // Pastikan $loop_index diinisialisasi sebelum digunakan
-                    while ($row = sqlsrv_fetch_array($stmt_admin, SQLSRV_FETCH_ASSOC)): ?>
-                        <tr style="background-color: <?php echo $loop_admin++ % 2 == 0 ? '#ffffff' : '#f9f9f9'; ?>;">
-                            <td class="table-cell" style="text-align: center;"><?php echo $loop_admin; ?></td>
-                            <td class="table-cell" style="text-align: center;"><?php echo htmlspecialchars($row['id']); ?></td>
-                            <td class="table-cell"><?php echo htmlspecialchars($row['username']); ?></td>
-                            <td class="table-cell"><?php echo htmlspecialchars($row['role']); ?></td>
-                            <td class="table-cell"><?php echo htmlspecialchars($row['dosen_id']); ?></td>
-                            <td class="action-buttons">
-                                <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
-                                <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>" 
-                                   onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
-                                    <button type="button" class="delete-button">
-                                        Hapus
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-            <br>
-        <?php endif; ?>
-
-        <!-- Tampilkan Daftar Akun Dosen -->
-        <?php if ($stmt_dosen && sqlsrv_has_rows($stmt_dosen)): ?>
-            <h1>Daftar Akun Dosen</h1>
-            <table>
-                <thead>
-                    <tr class="table-header">
-                        <th class="table-cell" style="text-align: center;">No</th>
-                        <th class="table-cell" style="text-align: center;">ID</th>
-                        <th class="table-cell">Username</th>
-                        <th class="table-cell">Role</th>
-                        <th class="table-cell">ID Dosen</th>
-                        <th class="table-cell" style="text-align: center;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    
-                    <?php $loop_dosen = 0; while ($row = sqlsrv_fetch_array($stmt_dosen, SQLSRV_FETCH_ASSOC)): ?>
-                        <tr style="background-color: <?php echo $loop_dosen++ % 2 == 0 ? '#f9f9f9' : '#ffffff'; ?>;">
-                            <td class="table-cell" style="text-align: center;"><?php echo $loop_dosen; ?></td>
-                            <td class="table-cell" style="text-align: center;"><?php echo $row['id']; ?></td>
-                            <td class="table-cell"><?php echo $row['username']; ?></td>
-                            <td class="table-cell"><?php echo $row['role']; ?></td>
-                            <td class="table-cell"><?php echo $row['dosen_id']; ?></td>
-                            <td class="action-buttons">
-                                <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
-                                <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>" 
-                                   onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
-                                    <button type="button" class="delete-button">
-                                        Hapus
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-            <br>
-        <?php endif; ?>
-
-        <!-- Tampilkan Daftar Akun Mahasiswa -->
-        <?php if ($stmt_mahasiswa && sqlsrv_has_rows($stmt_mahasiswa)): ?>
-            <h1>Daftar Akun Mahasiswa</h1>
-            <table>
-                <thead>
-                    <tr class="table-header">
-                        <th class="table-cell" style="text-align: center;">No</th>
-                        <th class="table-cell" style="text-align: center;">ID</th>
-                        <th class="table-cell">Username</th>
-                        <th class="table-cell">Role</th>
-                        <th class="table-cell">ID Mahasiswa</th>
-                        <th class="table-cell" style="text-align: center;">Aksi</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php $loop_mhs = 0;while ($row = sqlsrv_fetch_array($stmt_mahasiswa, SQLSRV_FETCH_ASSOC)): ?>
-                        <tr style="background-color: <?php echo $loop_mhs++ % 2 == 0 ? '#f9f9f9' : '#ffffff'; ?>;">
-                            <td class="table-cell" style="text-align: center;"><?php echo $loop_mhs; ?></td>
-                            <td class="table-cell" style="text-align: center;"><?php echo $row['id']; ?></td>
-                            <td class="table-cell"><?php echo $row['username']; ?></td>
-                            <td class="table-cell"><?php echo $row['role']; ?></td>
-                            <td class="table-cell"><?php echo $row['mahasiswa_id']; ?></td>
-                            <td class="action-buttons">
-                                <a href="admin_dashboard.php?page=edit_akun&id=<?php echo $row['id']; ?>" class="edit-button">Edit</a> |
-                                <a href="admin_dashboard.php?page=daftar_akun&id=<?php echo urlencode($row['id']); ?>&delete_id=<?php echo urlencode($row['id']); ?>" 
-                                   onclick="return confirm('Apakah Anda yakin ingin menghapus akun ini?')">
-                                    <button type="button" class="delete-button">
-                                        Hapus
-                                    </button>
-                                </a>
-                            </td>
-                        </tr>
-                    <?php endwhile; ?>
-                </tbody>
-            </table>
-        <?php endif; ?>
-    </div>
+        <br><br><br>
 </body>
 
 </html>

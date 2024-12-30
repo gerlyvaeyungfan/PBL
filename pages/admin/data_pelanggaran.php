@@ -64,8 +64,6 @@ echo '<div style="display: flex; justify-content: space-between; align-items: ce
 // Judul Daftar Data Pelanggaran
 echo '<h2 style="margin: 0px;">Daftar Data Pelanggaran</h2>';
 
-// Tombol Tambah Pelanggaran
-echo '<a href="admin_dashboard.php?page=tambah_pelanggaran" style="text-decoration: none; background-color: #004080; color: white; padding: 10px 20px; border-radius: 5px; font-weight: bold;">Tambah Pelanggaran</a>';
 echo '</div>';
 echo '<p>Menampilkan seluruh data Pelanggaran</p>';
 echo '<table border="1" cellpadding="10" cellspacing="0">';

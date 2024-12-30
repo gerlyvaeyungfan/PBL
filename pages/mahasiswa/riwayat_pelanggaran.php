@@ -65,11 +65,46 @@ if (sqlsrv_execute($stmt_laporan)) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        .button {
+            display: inline-block;
+            padding: 5px 13px;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .button-green {
+            background-color: green;
+        }
+
+        .button-green:hover {
+            background-color: darkgreen;
+        }
+
+        .button-red {
+            background-color: red;
+        }
+
+        .button-red:hover {
+            background-color: darkred;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            margin-bottom: 20px;
+        }
 
         th {
             background-color: #004080;
             color: white;
-            text-align: center;
+            text-align: left;
         }
 
         tr:nth-child(even) {
@@ -96,73 +131,58 @@ if (sqlsrv_execute($stmt_laporan)) {
             background-color: #003060;
             color: white;
         }
-        .table-container {
-            display: flex; /* Aktifkan flexbox */
-            justify-content: center; /* Posisikan secara horizontal */
-            align-items: center; /* Posisikan secara vertikal */
-            height: 40vh; /* Tinggi penuh layar */
-            width: 100%; /* Lebar penuh layar */
-            box-sizing: border-box; /* Pastikan padding dan border dihitung dalam ukuran */
-        }
-
-        table {
-            margin: 0 auto; /* Tambahan opsional untuk centering horizontal */
-            border-collapse: collapse; /* Menghapus jarak antar border tabel */
-            background-color: white; /* Tambahkan warna latar belakang untuk kontras */
-        }
-
     </style>
 </head>
 
 <body>
-<?php include('../navbar.php'); ?>
-    <?php if (!empty($pelanggaran_list)): ?>
-        <h2 style="text-align: left">Data Pelanggaran Anda</h2>
-        <div class="table-container">
-            <table border="2" cellpadding="3" cellspacing="0" style="width: 90%;">
+    <div style="background-color: #ffffff; padding: 20px; padding-bottom: 30px; margin: 0; border-radius: 8px; width: calc(100% - 0px); height: 100%; max-height: 460px; overflow-y: auto; box-sizing: border-box;">
+
+        <?php if (!empty($pelanggaran_list)): ?>
+            <h2>Data Pelanggaran Anda</h2>
+            <table border="1" cellpadding="5" cellspacing="0" style="width: 100%;">
                 <thead>
-                <tr style="background-color: #004080; color: white;">
-                    <th>No</th>
-                    <th>Tanggal Laporan</th>
-                    <th>Deskripsi Pelanggaran</th>
-                    <th>Tingkat</th>
-                    <th>Sanksi</th>
-                    <th>Unduh File Sanksi</th>
-                    <th>Upload Bukti Sanksi</th>
-                    <th>Detail</th>
-                </tr>
+                    <tr style="background-color: #004080; color: white;">
+                        <th>No</th>
+                        <th>Tanggal Laporan</th>
+                        <th>Deskripsi Pelanggaran</th>
+                        <th>Tingkat</th>
+                        <th>Sanksi</th>
+                        <th>Unduh File Sanksi</th>
+                        <th>Upload Bukti Sanksi</th>
+                        <th>Detail</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <?php $no = 1; ?>
-                <?php foreach ($pelanggaran_list as $row): ?>
-                    <tr>
-                        <td style="text-align: center;"><?= $no++; ?></td>
-                        <td style="text-align: center;"><?= htmlspecialchars($row['tanggal_laporan']->format('Y-m-d')); ?></td>
-                        <td><?= htmlspecialchars($row['deskripsi_pelanggaran']); ?></td>
-                        <td><?= htmlspecialchars($row['tingkat_sanksi']); ?></td>
-                        <td><?= htmlspecialchars($row['deskripsi_sanksi']); ?></td>
-                        <td style="text-align: center; vertical-align: middle;">
-                            <?php if (!empty($row['surat_sanksi'])): ?>
-                                <a href="<?= htmlspecialchars($row['surat_sanksi']); ?>" download class="btn-blue">Unduh</a>
-                            <?php else: ?>
-                                Tidak ada file
-                            <?php endif; ?>
-                        </td>
-                        <td style="text-align: center;">
-                            <a href="mahasiswa_dashboard.php?page=sanksi&id_laporan=<?= $row['id_laporan']; ?>" class="btn-blue">Upload</a>
-                        </td>
-                        <td style="text-align: center;">
-                            <a href="mahasiswa_dashboard.php?page=detail_laporan&id_laporan=<?= $row['id_laporan']; ?>" class="btn-blue">Lihat</a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
+                    <?php $no = 1; ?>
+                    <?php foreach ($pelanggaran_list as $row): ?>
+                        <tr>
+                            <td style="text-align: center;"><?= $no++; ?></td>
+                            <td style="text-align: center;"><?= htmlspecialchars($row['tanggal_laporan']->format('Y-m-d')); ?></td>
+                            <td><?= htmlspecialchars($row['deskripsi_pelanggaran']); ?></td>
+                            <td><?= htmlspecialchars($row['tingkat_sanksi']); ?></td>
+                            <td><?= htmlspecialchars($row['deskripsi_sanksi']); ?></td>
+                            <td style="text-align: center; vertical-align: middle;">
+                                <?php if (!empty($row['surat_sanksi'])): ?>
+                                    <a href="<?= htmlspecialchars($row['surat_sanksi']); ?>" download class="btn-blue">Unduh</a>
+                                <?php else: ?>
+                                    Tidak ada file
+                                <?php endif; ?>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="mahasiswa_dashboard.php?page=sanksi&id_laporan=<?= $row['id_laporan']; ?>" class="btn-blue">Upload</a>
+                            </td>
+                            <td style="text-align: center;">
+                                <a href="mahasiswa_dashboard.php?page=detail_laporan&id_laporan=<?= $row['id_laporan']; ?>" class="btn-blue">Lihat</a>
+                            </td>
+                        </tr>
+
+                    <?php endforeach; ?>
                 </tbody>
             </table>
-        </div>
-    <?php else: ?>
-        <h2>Tidak ada data pelanggaran mahasiswa.</h2>
-    <?php endif; ?>
-</div>
+        <?php else: ?>
+            <h2>Tidak ada data pelanggaran mahasiswa.</h2>
+        <?php endif; ?>
+    </div>
 </body>
 
 </html>

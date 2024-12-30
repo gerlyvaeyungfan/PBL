@@ -49,15 +49,51 @@
     }
 </style>
 
-<div class="sidebar" style="background: linear-gradient(160deg, rgb(227, 221, 255), rgb(2, 10, 125)); color: #696161; width: 200px; display: flex; flex-direction: column; align-items: flex-start; padding: 0px; margin-top: 60px; position: fixed; top: 0; left: 0; height: 100%; z-index: 1000;">
-
-    <div class="logo" style="font-weight: bold; margin-bottom: 40px; display: flex; align-items: center; justify-content: center;">
+<!--Warna side bar -->
+<div class="sidebar" style="background: linear-gradient(160deg, rgb(227, 221, 255), rgb(2, 10, 125)); color: #696161; width: 200px; margin-top: 60px;  height: 110%; z-index: 1000;">
+<div class="logo" style="font-weight: bold; margin-bottom: 10px;display:flex; align-items: center; justify-content: center;">
         <img src="../../view/img/logo/logo-sisitatib.png" alt="Logo" style="width: 200px; height: 32px; margin-left: 0px; margin-top: 8px; border: 0px;">
     </div>
 
+    <!--   /warna side bar-->
+    <div class="logo" style="font-weight: bold; margin-bottom: 20px; display: flex; align-items: center; justify-content: center; border-radius: 50%;">
+        <?php
+        if (isset($_SESSION['username']) && isset($_SESSION['role'])) {
+            $username = $_SESSION['username'];
+            $role = $_SESSION['role'];
+
+            // Tentukan query berdasarkan role
+            $query_foto = "";
+            if ($role == 'admin') {
+                $query_foto = "SELECT * FROM dosen WHERE id = (SELECT dosen_id FROM akun WHERE username = ?)";
+            }
+
+            // Eksekusi query hanya jika valid
+            if (!empty($query_foto)) {
+                $params = array($username);
+                $stmt_foto = sqlsrv_query($conn, $query_foto, $params);
+
+                // Validasi hasil query
+                if ($stmt_foto === false) {
+                    die(print_r(sqlsrv_errors(), true));
+                }
+
+                // Ambil data jika query berhasil
+                if (sqlsrv_has_rows($stmt_foto)) {
+                    $foto = sqlsrv_fetch_array($stmt_foto, SQLSRV_FETCH_ASSOC);
+                    echo '<img src="' . htmlspecialchars($foto['foto_dosen'] ?? 'default.png') . '" alt="Foto ' . ucfirst($role) . '" style="width: 70px; height: 70px; margin-top: 10px; border-radius: 50%;">';
+                } else {
+                    echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px; border-radius: 50%;">';
+                }
+            }
+        } else {
+            echo '<img src="default.png" alt="Default Foto" style="width: 60px; height: 60px; margin-top: 10px;">';
+        }
+        ?>
+    </div>
+
     <div class="menu">
-        
-        <div class="no-hover">Periode 2024/2025</div>
+        <div class="no-hover"  style="color: black">Periode 2024/2025</div>
         <p>MAIN MENU</p>
         <a href="admin_dashboard.php?page=pelanggaran">Riwayat Pelanggaran</a>
         <a href="admin_dashboard.php?page=data_mahasiswa">Data Mahasiswa</a>
@@ -93,8 +129,3 @@
         });
     });
 </script>
-
-<!-- Content container for the page -->
-<div style="margin-left: 200px; padding: 0px;">
-    <!-- Other content goes here -->
-</div>
